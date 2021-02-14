@@ -17,6 +17,7 @@ import (
 var vector []*list.Lista
 
 func Linear(doc Mytype) {
+	var temp_vector []*list.Lista
 
 	first_dimention_size := len(doc.Datos)
 	second_dimention_size := len(doc.Datos[0].Departamentos)
@@ -25,45 +26,28 @@ func Linear(doc Mytype) {
 	for i := 0; i <= first_dimention_size-1; i++ {
 		for j := 0; j <= second_dimention_size-1; j++ {
 			position++
+			//CREACION DE LAS CALIFICACIONES
 			for d := 1; d <= 5; d++ {
 				var MyList *list.Lista = list.NewList()
-				vector = append(vector, MyList)
+				temp_vector = append(temp_vector, MyList)
 			}
+			//INSERSION AL VECTOR
 			for k := 0; k <= len(doc.Datos[i].Departamentos[j].Tiendas)-1; k++ {
-				MyStore := list.Store(doc.Datos[i].Departamentos[j].Tiendas[k])
-				pos := ((position - 1) * 5) + doc.Datos[i].Departamentos[j].Tiendas[k].Calificacion
-				list.Insertar(&MyStore, vector[pos-1])
+				if doc.Datos[i].Departamentos[j].Tiendas[k].Calificacion < 6 {
+					MyStore := list.Store(doc.Datos[i].Departamentos[j].Tiendas[k])
+					pos := ((position - 1) * 5) + doc.Datos[i].Departamentos[j].Tiendas[k].Calificacion
+					list.Insertar(&MyStore, temp_vector[pos-1])
+				}
 			}
 		}
 	}
-
-	/*dot_inst := "digraph G{ node[style=\"filled\",fillcolor=\"#8df7ef\",shape=\"record\"]  VectorNode[label=\""
-	var lists string
-	count := 0
-
-	for g := 0; g < len(vector); g++ {
-		count++
-		if g == (len(vector) - 1) {
-			dot_inst += "<" + strconv.Itoa(g) + ">" + strconv.Itoa(count) + "\"]"
-		} else {
-			dot_inst += "<" + strconv.Itoa(g) + ">" + strconv.Itoa(count) + "|"
-		}
-		if count == 5 {
-			count = 0
-		}
-		lists += list.GetDotList(vector[g], g)
-	}
-
-	dot_inst += lists + " }"
-	fmt.Println(dot_inst)*/
-	Grafi()
-
+	vector = temp_vector
 }
-func Grafi() {
+func Grafi(w http.ResponseWriter, r *http.Request) {
 
 	dot_inst := "digraph G{ \n node[style=\"filled\",fillcolor=\"#8df7ef\",shape=\"record\"]  VectorNode[label=\""
 	var lists string
-	count := 0
+	count := -1
 
 	for g := 0; g < len(vector); g++ {
 		count++
@@ -72,14 +56,11 @@ func Grafi() {
 		} else {
 			dot_inst += "<" + strconv.Itoa(g) + ">" + strconv.Itoa(count) + "|"
 		}
-		if count == 5 {
-			count = 0
-		}
+
 		lists += list.GetDotList(vector[g], g)
 	}
 
 	dot_inst += lists + "\n }"
-	//fmt.Println(dot_inst)
 	dot.CrearArchivo(dot_inst)
 	dot.Graph()
 }
@@ -99,10 +80,54 @@ type Mytype struct {
 	}
 }
 
-func CreateData(w http.ResponseWriter, r *http.Request) {
-	//var dato Dato
-	var dato Mytype
+type E_pos struct {
+	Departamento string `json:"Departamento"`
+	Nombre       string `json:"Nombre"`
+	Calificacion int    `json:"Calificacion"`
+}
 
+func Browser(w http.ResponseWriter, r *http.Request) {
+	var info E_pos
+	reqBody, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		fmt.Fprintf(w, "Insert a Valid Task")
+	}
+	json.Unmarshal([]byte(reqBody), &info)
+
+	first_dimention_size := len(dato.Datos)
+	second_dimention_size := len(dato.Datos[0].Departamentos)
+	Dep := info.Departamento
+	Index := info.Nombre[:1]
+	Cal := info.Calificacion
+	var position int
+	var pos int
+
+	fmt.Println(Dep, Index)
+	for i := 0; i <= first_dimention_size-1; i++ {
+		for j := 0; j <= second_dimention_size-1; j++ {
+			position++
+			if dato.Datos[i].Indice == Index && dato.Datos[i].Departamentos[j].Nombre == Dep && Cal <= 5 {
+				pos = position
+				pos = (((pos - 1) * 5) + Cal) - 1
+			}
+		}
+	}
+
+	fmt.Println(list.Store_Browser(info.Nombre, info.Calificacion, vector[pos]))
+	res := list.Store_Browser(info.Nombre, info.Calificacion, vector[pos])
+	w.Header().Set("Content-type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	if res.Calificacion != 0 {
+		json.NewEncoder(w).Encode(res)
+	} else {
+		json.NewEncoder(w).Encode("No existe dicha tienda")
+	}
+
+}
+
+var dato Mytype
+
+func CreateData(w http.ResponseWriter, r *http.Request) {
 	reqBody, err := ioutil.ReadAll(r.Body)
 
 	if err != nil {
@@ -111,10 +136,21 @@ func CreateData(w http.ResponseWriter, r *http.Request) {
 
 	json.Unmarshal([]byte(reqBody), &dato)
 	Linear(dato)
-	//fmt.Println(dato.Datos[0].Departamentos[0].Tiendas[0])
+}
+
+func Linear_Browser(w http.ResponseWriter, r *http.Request) {
+	parametros := mux.Vars(r)
+	id := parametros["numero"]
+	number, err := strconv.Atoi(id)
 	w.Header().Set("Content-type", "application/json")
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(dato)
+
+	if err == nil && list.Get_Group(vector[number]) != nil {
+		json.NewEncoder(w).Encode(list.Get_Group(vector[number]))
+	} else {
+		json.NewEncoder(w).Encode("No hay registro de tiendas en el indice: " + strconv.Itoa(number))
+	}
+
 }
 
 func GetData(w http.ResponseWriter, r *http.Request) {
@@ -127,8 +163,11 @@ func indexRoute(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/", indexRoute).Methods(("GET"))
+	router.HandleFunc("/", indexRoute).Methods("GET")
+	router.HandleFunc("/getArreglo", Grafi).Methods(("GET"))
 	router.HandleFunc("/", CreateData).Methods("POST")
+	router.HandleFunc("/id/{numero}", Linear_Browser).Methods("GET")
+	router.HandleFunc("/TiendaEspecifica", Browser).Methods(("POST"))
 	log.Fatal(http.ListenAndServe(":3000", router))
 
 }

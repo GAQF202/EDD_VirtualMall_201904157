@@ -23,6 +23,8 @@ type Lista struct {
 	contador int
 }
 
+type GroupStores []Store
+
 func NuevoNodo(tienda Store) *Nodo {
 	return &Nodo{nil, nil, tienda}
 }
@@ -68,6 +70,19 @@ func CreateNode(index int, label string, color string) string {
 	return "node" + strconv.Itoa(index) + "[label=\"" + label + "\",fillcolor=\"white\"," + "shape=\"record\"" + ",color=\"" + color + "\"]"
 }
 
+func Store_Browser(name string, calification int, list *Lista) Store {
+	aux := list.primero
+	var result Store
+
+	for aux != nil {
+		if aux.tienda.Nombre == name && aux.tienda.Calificacion == calification {
+			result = aux.tienda
+		}
+		aux = aux.siguiente
+	}
+	return result
+}
+
 func GetDotList(lista *Lista, corr int) string {
 	count := corr
 	aux := lista.primero
@@ -92,4 +107,15 @@ func GetDotList(lista *Lista, corr int) string {
 	}
 
 	return dot_inst
+}
+
+func Get_Group(lista *Lista) GroupStores {
+	aux := lista.primero
+	var result GroupStores
+
+	for aux != nil {
+		result = append(result, aux.tienda)
+		aux = aux.siguiente
+	}
+	return result
 }
