@@ -80,10 +80,58 @@ type Mytype struct {
 	}
 }
 
+type ReturnedType struct {
+	Datos []struct {
+		Indice        string
+		Departamentos []struct {
+			Nombre  string
+			Tiendas []list.Store
+		}
+	}
+}
+
 type E_pos struct {
 	Departamento string `json:"Departamento"`
 	Nombre       string `json:"Nombre"`
 	Calificacion int    `json:"Calificacion"`
+}
+
+type D_pos struct {
+	Categoria    string `json:"Categoria"`
+	Nombre       string `json:"Nombre"`
+	Calificacion int    `json:"Calificacion"`
+}
+
+func Get_position(Dep string, Name string, Cal int) int {
+	first_dimention_size := len(dato.Datos)
+	second_dimention_size := len(dato.Datos[0].Departamentos)
+	Index := Name[:1]
+	var position int
+	var pos int
+
+	for i := 0; i <= first_dimention_size-1; i++ {
+		for j := 0; j <= second_dimention_size-1; j++ {
+			position++
+			if dato.Datos[i].Indice == Index && dato.Datos[i].Departamentos[j].Nombre == Dep && Cal <= 5 {
+				pos = position
+				pos = (((pos - 1) * 5) + Cal) - 1
+			}
+		}
+	}
+	return pos
+}
+
+func Delete_Store(w http.ResponseWriter, r *http.Request) {
+	var info D_pos
+
+	reqBody, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		fmt.Fprintf(w, "Insert a Valid Task")
+	}
+	json.Unmarshal([]byte(reqBody), &info)
+	pos := Get_position(info.Categoria, info.Nombre, info.Calificacion)
+	list.Delete_Node(vector[pos], info.Nombre, info.Calificacion)
+
 }
 
 func Browser(w http.ResponseWriter, r *http.Request) {
@@ -167,6 +215,7 @@ func main() {
 	router.HandleFunc("/getArreglo", Grafi).Methods(("GET"))
 	router.HandleFunc("/", CreateData).Methods("POST")
 	router.HandleFunc("/id/{numero}", Linear_Browser).Methods("GET")
+	router.HandleFunc("/Eliminar", Delete_Store).Methods(("POST"))
 	router.HandleFunc("/TiendaEspecifica", Browser).Methods(("POST"))
 	log.Fatal(http.ListenAndServe(":3000", router))
 

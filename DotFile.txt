@@ -1,3 +1,13 @@
 digraph G{ 
- node[style="filled",fillcolor="#8df7ef",shape="record"]  VectorNode[label="<0>0|<1>1|<2>2|<3>3|<4>4|<5>5|<6>6|<7>7|<8>8|<9>9|<10>10|<11>11|<12>12|<13>13|<14>14|<15>15|<16>16|<17>17|<18>18|<19>19|<20>20|<21>21|<22>22|<23>23|<24>24|<25>25|<26>26|<27>27|<28>28|<29>29"] node1[label="Au",fillcolor="white",shape="record",color="pink"] VectorNode:"0" -> node1 node4[label="Amador",fillcolor="white",shape="record",color="pink"] VectorNode:"3" -> node4 node5[label="Aurora",fillcolor="white",shape="record",color="pink"] node5->node6->node5 VectorNode:"4" -> node5 node6[label="Armados",fillcolor="white",shape="record",color="pink"] node10[label="A comer todo",fillcolor="white",shape="record",color="pink"] VectorNode:"9" -> node10 node30[label="Bayoneta",fillcolor="white",shape="record",color="pink"] VectorNode:"29" -> node30
+ node[style="filled",fillcolor="#8df7ef",shape="record"]  VectorNode[label="<0>0|<1>1|<2>2|<3>3|<4>4|<5>5|<6>6|<7>7|<8>8|<9>9|<10>10|<11>11|<12>12|<13>13|<14>14|<15>15|<16>16|<17>17|<18>18|<19>19|<20>20|<21>21|<22>22|<23>23|<24>24|<25>25|<26>26|<27>27|<28>28|<29>29"] node171[label="Amador",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"3" -> node171
+ node172[label="Aurora",fillcolor="white",shape="record",color="pink"]
+ node172->node173->node172
+
+ VectorNode:"4" -> node172
+ node173[label="Armados",fillcolor="white",shape="record",color="pink"] node174[label="A comer todo",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"9" -> node174
+ node175[label="Bayoneta",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"29" -> node175
+
  }

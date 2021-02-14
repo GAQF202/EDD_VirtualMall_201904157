@@ -65,11 +65,6 @@ func Insertar(tienda *Store, lista *Lista) {
 
 }
 
-func CreateNode(index int, label string, color string) string {
-
-	return "node" + strconv.Itoa(index) + "[label=\"" + label + "\",fillcolor=\"white\"," + "shape=\"record\"" + ",color=\"" + color + "\"]"
-}
-
 func Store_Browser(name string, calification int, list *Lista) Store {
 	aux := list.primero
 	var result Store
@@ -83,8 +78,15 @@ func Store_Browser(name string, calification int, list *Lista) Store {
 	return result
 }
 
+func CreateNode(index int, label string, color string) string {
+
+	return "node" + strconv.Itoa(index) + "[label=\"" + label + "\",fillcolor=\"white\"," + "shape=\"record\"" + ",color=\"" + color + "\"]"
+}
+
+var count int
+
 func GetDotList(lista *Lista, corr int) string {
-	count := corr
+
 	aux := lista.primero
 	var dot_inst string
 
@@ -93,13 +95,12 @@ func GetDotList(lista *Lista, corr int) string {
 			count++
 			actual, anterior, siguiente_anterior := "node"+strconv.Itoa(count), "node"+strconv.Itoa(count+1), "node"+strconv.Itoa(count)
 			dot_inst += " " + CreateNode(count, aux.tienda.Nombre, "pink")
-
 			if aux.siguiente != nil {
-				dot_inst += " " + actual + "->" + anterior + "->" + siguiente_anterior
+				dot_inst += "\n " + actual + "->" + anterior + "->" + siguiente_anterior + "\n"
 			}
 
 			if aux.anterior == nil {
-				dot_inst += " VectorNode:\"" + strconv.Itoa(corr) + "\" -> " + actual
+				dot_inst += "\n VectorNode:\"" + strconv.Itoa(corr) + "\" -> " + actual + "\n"
 			}
 
 			aux = aux.siguiente
@@ -118,4 +119,30 @@ func Get_Group(lista *Lista) GroupStores {
 		aux = aux.siguiente
 	}
 	return result
+}
+
+func Delete_Node(lista *Lista, Name string, Cal int) {
+	//SI LA LISTA ESTA VACIA
+	if lista != nil {
+		if lista.primero == lista.ultimo && lista.primero.tienda.Nombre == Name && lista.primero.tienda.Calificacion == Cal {
+			lista.primero, lista.ultimo = nil, nil
+		} else if lista.primero.tienda.Nombre == Name && lista.primero.tienda.Calificacion == Cal {
+			lista.primero = lista.primero.siguiente
+			lista.primero.anterior = nil
+		} else {
+			anterior := lista.primero
+			temp := lista.primero.siguiente
+
+			for temp != nil && temp.tienda.Nombre != Name && temp.tienda.Calificacion != Cal {
+				anterior = anterior.siguiente
+				temp = temp.siguiente
+			}
+			if temp != nil {
+				anterior.siguiente = temp.siguiente
+				if temp == lista.ultimo {
+					lista.ultimo = anterior
+				}
+			}
+		}
+	}
 }

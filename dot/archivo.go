@@ -43,7 +43,7 @@ func CrearArchivo(commands string) {
 
 func Graph() {
 	path, _ := exec.LookPath("dot")
-	cmd, _ := exec.Command(path, "-Tpng", "DotFile.txt").Output()
+	cmd, _ := exec.Command(path, "-Tsvg", "DotFile.txt").Output()
 	mode := int(0777)
-	ioutil.WriteFile("Diagram.png", cmd, os.FileMode(mode))
+	ioutil.WriteFile("Diagram.svg", cmd, os.FileMode(mode))
 }
