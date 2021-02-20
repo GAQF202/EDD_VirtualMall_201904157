@@ -34,13 +34,15 @@ func NewList() *Lista {
 }
 
 func Imprimir(lista *Lista) {
+
+	//fmt.Println(lista.primero.tienda)
 	aux := lista.primero
 
 	for aux != nil {
 
 		fmt.Println("---------Tienda----------")
 
-		fmt.Println("nodo anterior:", aux.tienda)
+		fmt.Println(aux.tienda)
 
 		aux = aux.siguiente
 	}
@@ -145,4 +147,39 @@ func Delete_Node(lista *Lista, Name string, Cal int) {
 			}
 		}
 	}
+}
+
+func IsVoid(list *Lista) bool {
+	return list.primero == nil
+}
+
+type Group []struct {
+	Nombre       string `json:"Nombre"`
+	Descripcion  string `json:"Descripcion"`
+	Contacto     string `json:"Contacto"`
+	Calificacion int    `json:"Calificacion"`
+}
+
+func Get_store(list *Lista) Group {
+	var myGropu Group
+	aux := list.primero
+
+	for aux != nil {
+		myGropu = append(myGropu, struct {
+			Nombre       string "json:\"Nombre\""
+			Descripcion  string "json:\"Descripcion\""
+			Contacto     string "json:\"Contacto\""
+			Calificacion int    "json:\"Calificacion\""
+		}(aux.tienda))
+		aux = aux.siguiente
+	}
+	return myGropu
+}
+
+func GetCalification(list *Lista) int {
+	res := 0
+	if list.primero != nil {
+		res = list.primero.tienda.Calificacion
+	}
+	return res
 }

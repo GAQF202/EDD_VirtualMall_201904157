@@ -61,7 +61,7 @@ func Grafi(w http.ResponseWriter, r *http.Request) {
 	}
 
 	dot_inst += lists + "\n }"
-	dot.CrearArchivo(dot_inst)
+	dot.CrearArchivo(dot_inst, "txt")
 	dot.Graph()
 }
 
@@ -76,16 +76,6 @@ type Mytype struct {
 				Contacto     string `json:"Contacto"`
 				Calificacion int    `json:"Calificacion"`
 			}
-		}
-	}
-}
-
-type ReturnedType struct {
-	Datos []struct {
-		Indice        string
-		Departamentos []struct {
-			Nombre  string
-			Tiendas []list.Store
 		}
 	}
 }
@@ -131,7 +121,6 @@ func Delete_Store(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal([]byte(reqBody), &info)
 	pos := Get_position(info.Categoria, info.Nombre, info.Calificacion)
 	list.Delete_Node(vector[pos], info.Nombre, info.Calificacion)
-
 }
 
 func Browser(w http.ResponseWriter, r *http.Request) {
@@ -150,7 +139,6 @@ func Browser(w http.ResponseWriter, r *http.Request) {
 	var position int
 	var pos int
 
-	fmt.Println(Dep, Index)
 	for i := 0; i <= first_dimention_size-1; i++ {
 		for j := 0; j <= second_dimention_size-1; j++ {
 			position++
@@ -161,7 +149,6 @@ func Browser(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	fmt.Println(list.Store_Browser(info.Nombre, info.Calificacion, vector[pos]))
 	res := list.Store_Browser(info.Nombre, info.Calificacion, vector[pos])
 	w.Header().Set("Content-type", "application/json")
 	w.WriteHeader(http.StatusCreated)
@@ -201,21 +188,51 @@ func Linear_Browser(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func GetData(w http.ResponseWriter, r *http.Request) {
-	json.NewEncoder(w).Encode("stores")
+func Delete_all() {
+	first_dimention_size := len(dato.Datos)
+	second_dimention_size := len(dato.Datos[0].Departamentos)
+	for i := 0; i <= first_dimention_size-1; i++ {
+		for j := 0; j <= second_dimention_size-1; j++ {
+			dato.Datos[i].Departamentos[j].Tiendas = nil
+		}
+	}
 }
 
-func indexRoute(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hola")
+func Json_Returned(w http.ResponseWriter, r *http.Request) {
+	count := 1
+	Delete_all()
+	for k := 0; k < len(vector); k++ {
+		count++
+		if !list.IsVoid(vector[k]) {
+			VecPos := ((count - list.GetCalification(vector[k])) / 5)
+			Insert_in_myType(vector[k], k, VecPos)
+		}
+	}
+	file, _ := json.MarshalIndent(dato, "", " ")
+	_ = ioutil.WriteFile("salida.json", file, 0644)
+}
+
+func Insert_in_myType(lista *list.Lista, position int, VecPos int) {
+	first_dimention_size := len(dato.Datos)
+	second_dimention_size := len(dato.Datos[0].Departamentos)
+	count := -1
+	for i := 0; i <= first_dimention_size-1; i++ {
+		for j := 0; j <= second_dimention_size-1; j++ {
+			count++
+			if count == VecPos {
+				dato.Datos[i].Departamentos[j].Tiendas = append(dato.Datos[i].Departamentos[j].Tiendas, list.Get_store(vector[position])...)
+			}
+		}
+	}
 }
 
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/", indexRoute).Methods("GET")
 	router.HandleFunc("/getArreglo", Grafi).Methods(("GET"))
+	router.HandleFunc("/Guardar", Json_Returned).Methods(("GET"))
 	router.HandleFunc("/", CreateData).Methods("POST")
 	router.HandleFunc("/id/{numero}", Linear_Browser).Methods("GET")
-	router.HandleFunc("/Eliminar", Delete_Store).Methods(("POST"))
+	router.HandleFunc("/Eliminar", Delete_Store).Methods(("DELETE"))
 	router.HandleFunc("/TiendaEspecifica", Browser).Methods(("POST"))
 	log.Fatal(http.ListenAndServe(":3000", router))
 

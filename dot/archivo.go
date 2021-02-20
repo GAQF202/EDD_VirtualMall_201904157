@@ -14,9 +14,9 @@ func There_is_error(err error) bool {
 	return (err != nil)
 }
 
-func CrearArchivo(commands string) {
+func CrearArchivo(commands string, extension string) {
 
-	var file, err = os.Create("./DotFile.txt")
+	var file, err = os.Create("./DotFile." + extension)
 	if There_is_error(err) {
 		return
 	}
