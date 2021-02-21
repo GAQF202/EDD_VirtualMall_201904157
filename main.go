@@ -116,7 +116,7 @@ func Delete_Store(w http.ResponseWriter, r *http.Request) {
 
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		fmt.Fprintf(w, "Insert a Valid Task")
+		fmt.Fprintf(w, "Inserte una tienda existente")
 	}
 	json.Unmarshal([]byte(reqBody), &info)
 	pos := Get_position(info.Categoria, info.Nombre, info.Calificacion)
@@ -127,7 +127,7 @@ func Browser(w http.ResponseWriter, r *http.Request) {
 	var info E_pos
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		fmt.Fprintf(w, "Insert a Valid Task")
+		fmt.Fprintf(w, "Inserte una tienda existente")
 	}
 	json.Unmarshal([]byte(reqBody), &info)
 
@@ -229,8 +229,8 @@ func Insert_in_myType(lista *list.Lista, position int, VecPos int) {
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/getArreglo", Grafi).Methods(("GET"))
-	router.HandleFunc("/Guardar", Json_Returned).Methods(("GET"))
-	router.HandleFunc("/", CreateData).Methods("POST")
+	router.HandleFunc("/guardar", Json_Returned).Methods(("GET"))
+	router.HandleFunc("/cargartienda", CreateData).Methods("POST")
 	router.HandleFunc("/id/{numero}", Linear_Browser).Methods("GET")
 	router.HandleFunc("/Eliminar", Delete_Store).Methods(("DELETE"))
 	router.HandleFunc("/TiendaEspecifica", Browser).Methods(("POST"))

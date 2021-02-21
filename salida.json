@@ -7,15 +7,21 @@
      "Nombre": "Deportes",
      "Tiendas": [
       {
+       "Nombre": "Arcos",
+       "Descripcion": "Equipo goleador",
+       "Contacto": "89983333",
+       "Calificacion": 3
+      },
+      {
        "Nombre": "Amador",
        "Descripcion": "es una empresa alemana fabricante de accesorios, ropa y calzado deportivo, cuya sede central está en Herzogenaurach, Alemania",
        "Contacto": "5588-9988",
        "Calificacion": 4
       },
       {
-       "Nombre": "Aurora",
-       "Descripcion": "Es una empresa multinacional estadounidense dedicada al diseño, desarrollo, fabricación y comercialización de equipamiento deportivo: balones, calzado, ropa, equipo, accesorios y otros artículos deportivos",
-       "Contacto": "5544-3377",
+       "Nombre": "Armados",
+       "Descripcion": "Equipo extremo",
+       "Contacto": "8995222",
        "Calificacion": 5
       }
      ]
@@ -34,6 +40,30 @@
     {
      "Nombre": "celulares",
      "Tiendas": null
+    }
+   ]
+  },
+  {
+   "Indice": "C",
+   "Departamentos": [
+    {
+     "Nombre": "Deportes",
+     "Tiendas": null
+    },
+    {
+     "Nombre": "Comida",
+     "Tiendas": null
+    },
+    {
+     "Nombre": "Celulares",
+     "Tiendas": [
+      {
+       "Nombre": "Carros",
+       "Descripcion": "Carros prrones",
+       "Contacto": "bayoneta@gmail.com",
+       "Calificacion": 1
+      }
+     ]
     }
    ]
   },
