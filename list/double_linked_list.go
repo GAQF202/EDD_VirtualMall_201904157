@@ -3,18 +3,23 @@ package list
 import (
 	"fmt"
 	"strconv"
+
+	"github.com/GAQF202/servidor-rest/Structs"
 )
 
+//STRUCT PARA TIENDA
 type Store struct {
 	Nombre       string
 	Descripcion  string
 	Contacto     string
 	Calificacion int
+	//	Inventario   Estructures.AVL
 }
 
 type Nodo struct {
 	siguiente, anterior *Nodo
 	tienda              Store
+	Inventario          AVL
 }
 
 type Lista struct {
@@ -26,7 +31,9 @@ type Lista struct {
 type GroupStores []Store
 
 func NuevoNodo(tienda Store) *Nodo {
-	return &Nodo{nil, nil, tienda}
+	//SIGUIENTE, ANTERIOR, TIENDA, INVENTARIO
+	//return &Nodo{nil, nil, tienda}
+	return &Nodo{siguiente: nil, anterior: nil, tienda: tienda}
 }
 
 func NewList() *Lista {
@@ -67,6 +74,7 @@ func Insertar(tienda *Store, lista *Lista) {
 
 }
 
+//ARREGLAR ESTA FUNCION
 func Store_Browser(name string, calification int, list *Lista) Store {
 	aux := list.primero
 	var result Store
@@ -78,6 +86,32 @@ func Store_Browser(name string, calification int, list *Lista) Store {
 		aux = aux.siguiente
 	}
 	return result
+}
+
+//BUSCA LA TIENDA Y GUARDA EN EL ARBOL LOS PRODUCTOS
+func Get_store_node(name string, calification int, list *Lista, product Structs.Product) {
+	aux := list.primero
+
+	for aux != nil {
+		if aux.tienda.Nombre == name && aux.tienda.Calificacion == calification {
+			//fmt.Println(product.Nombre)
+			aux.Inventario.Add(product)
+		}
+		aux = aux.siguiente
+	}
+
+}
+
+func VerNodos(list *Lista) {
+	aux := list.primero
+	for aux != nil {
+		if aux.Inventario.Raiz != nil {
+			fmt.Println(aux.tienda.Nombre)
+			aux.Inventario.Preorder(aux.Inventario.Raiz)
+			fmt.Println("------------------")
+		}
+		aux = aux.siguiente
+	}
 }
 
 func CreateNode(index int, label string, color string) string {

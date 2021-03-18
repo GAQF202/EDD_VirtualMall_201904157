@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/GAQF202/servidor-rest/Products"
 	"github.com/GAQF202/servidor-rest/dot"
 	"github.com/GAQF202/servidor-rest/list"
 
@@ -42,6 +43,7 @@ func Linear(doc Mytype) {
 		}
 	}
 	vector = temp_vector
+	list.GlobalVector = vector
 }
 func Grafi(w http.ResponseWriter, r *http.Request) {
 
@@ -80,18 +82,21 @@ type Mytype struct {
 	}
 }
 
+//STRUCT PARA BUSQUEDA
 type E_pos struct {
 	Departamento string `json:"Departamento"`
 	Nombre       string `json:"Nombre"`
 	Calificacion int    `json:"Calificacion"`
 }
 
+//STRUCT PARA ELIMINACION
 type D_pos struct {
 	Categoria    string `json:"Categoria"`
 	Nombre       string `json:"Nombre"`
 	Calificacion int    `json:"Calificacion"`
 }
 
+//HALLAR POSICION ESPECIFICA DE UN NODO EN LA LISTA DE TIENDAS
 func Get_position(Dep string, Name string, Cal int) int {
 	first_dimention_size := len(dato.Datos)
 	second_dimention_size := len(dato.Datos[0].Departamentos)
@@ -111,6 +116,7 @@ func Get_position(Dep string, Name string, Cal int) int {
 	return pos
 }
 
+//FUNCION PARA ELIMINAR TIENDA
 func Delete_Store(w http.ResponseWriter, r *http.Request) {
 	var info D_pos
 
@@ -123,6 +129,7 @@ func Delete_Store(w http.ResponseWriter, r *http.Request) {
 	list.Delete_Node(vector[pos], info.Nombre, info.Calificacion)
 }
 
+//BUSQUEDA ESPECIFICA DE TIENDAS
 func Browser(w http.ResponseWriter, r *http.Request) {
 	var info E_pos
 	reqBody, err := ioutil.ReadAll(r.Body)
@@ -171,9 +178,12 @@ func CreateData(w http.ResponseWriter, r *http.Request) {
 
 	json.Unmarshal([]byte(reqBody), &dato)
 	Linear(dato)
+	//ENVIA LOS DATOS PARA MANEJAR LA VARIABLE EN TODO EL PROGRAMA
+	list.Dato = list.Mytype(dato)
 }
 
 func Linear_Browser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	parametros := mux.Vars(r)
 	id := parametros["numero"]
 	number, err := strconv.Atoi(id)
@@ -198,7 +208,9 @@ func Delete_all() {
 	}
 }
 
+//FUNCION PARA GUARDAR ARCHIVO JSON DE SALIDA
 func Json_Returned(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	count := 1
 	Delete_all()
 	for k := 0; k < len(vector); k++ {
@@ -234,6 +246,10 @@ func main() {
 	router.HandleFunc("/id/{numero}", Linear_Browser).Methods("GET")
 	router.HandleFunc("/Eliminar", Delete_Store).Methods(("DELETE"))
 	router.HandleFunc("/TiendaEspecifica", Browser).Methods(("POST"))
+
+	//RUTAS PARA CARGA DE PRODUCTOS
+	router.HandleFunc("/CargarInventarios", Products.LoadInv).Methods(("POST"))
+
 	log.Fatal(http.ListenAndServe(":3000", router))
 
 }
