@@ -46,7 +46,9 @@ func Linear(doc Mytype) {
 	list.GlobalVector = vector
 }
 func Grafi(w http.ResponseWriter, r *http.Request) {
-
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-type", "application/json")
+	w.WriteHeader(http.StatusCreated)
 	dot_inst := "digraph G{ \n node[style=\"filled\",fillcolor=\"#8df7ef\",shape=\"record\"]  VectorNode[label=\""
 	var lists string
 	count := -1
@@ -77,6 +79,7 @@ type Mytype struct {
 				Descripcion  string `json:"Descripcion"`
 				Contacto     string `json:"Contacto"`
 				Calificacion int    `json:"Calificacion"`
+				Logo         string `json:"Logo"`
 			}
 		}
 	}
@@ -131,6 +134,7 @@ func Delete_Store(w http.ResponseWriter, r *http.Request) {
 
 //BUSQUEDA ESPECIFICA DE TIENDAS
 func Browser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	var info E_pos
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -170,23 +174,30 @@ func Browser(w http.ResponseWriter, r *http.Request) {
 var dato Mytype
 
 func CreateData(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	reqBody, err := ioutil.ReadAll(r.Body)
 
 	if err != nil {
 		fmt.Fprintf(w, "Insert a Valid Task")
 	}
 
+	w.Header().Set("Content-type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+
 	json.Unmarshal([]byte(reqBody), &dato)
 	Linear(dato)
+
+	//JSON DE RESPUESTA
+	json.NewEncoder(w).Encode(dato)
 	//ENVIA LOS DATOS PARA MANEJAR LA VARIABLE EN TODO EL PROGRAMA
 	list.Dato = list.Mytype(dato)
 }
 
 func Linear_Browser(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
 	parametros := mux.Vars(r)
 	id := parametros["numero"]
 	number, err := strconv.Atoi(id)
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 
@@ -220,8 +231,12 @@ func Json_Returned(w http.ResponseWriter, r *http.Request) {
 			Insert_in_myType(vector[k], k, VecPos)
 		}
 	}
+	w.Header().Set("Content-type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(dato)
 	file, _ := json.MarshalIndent(dato, "", " ")
 	_ = ioutil.WriteFile("salida.json", file, 0644)
+
 }
 
 func Insert_in_myType(lista *list.Lista, position int, VecPos int) {
@@ -238,6 +253,38 @@ func Insert_in_myType(lista *list.Lista, position int, VecPos int) {
 	}
 }
 
+//var cartProducts []Products.CarritoType
+
+func Carrito(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	reqBody, err := ioutil.ReadAll(r.Body)
+	var carrito Products.CarritoType
+	if err != nil {
+		fmt.Fprintf(w, "Insert a Valid Task")
+	}
+
+	w.Header().Set("Content-type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+
+	json.Unmarshal([]byte(reqBody), &carrito)
+	//GUARDA LOS PRODUCTOS
+	fmt.Println(carrito)
+
+	Products.CartProducts = append(Products.CartProducts, carrito)
+
+	//JSON DE RESPUESTA
+	json.NewEncoder(w).Encode(carrito)
+}
+
+func getCarrito(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	//fmt.Println("aqui es", Products.CartProducts)
+	json.NewEncoder(w).Encode(Products.CartProducts)
+	//fmt.Println(cartProducts)
+}
+
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/getArreglo", Grafi).Methods(("GET"))
@@ -247,8 +294,23 @@ func main() {
 	router.HandleFunc("/Eliminar", Delete_Store).Methods(("DELETE"))
 	router.HandleFunc("/TiendaEspecifica", Browser).Methods(("POST"))
 
+	//ENVIO DE PRODUCTOS CONFIRMADOS EN EL CARRITO DE COMPRAS
+	router.HandleFunc("/comprar", Products.Cobrar).Methods(("POST"))
+
+	//ENVIO DE CARRITO DE COMPRAS
+	router.HandleFunc("/EnviarCarrito", Carrito).Methods(("POST"))
+	router.HandleFunc("/EnviarCarrito", getCarrito).Methods(("GET"))
+	//router.HandleFunc("/elSel", D_Select).Methods(("POST"))
+	router.HandleFunc("/elSel", Products.Delete_Select).Methods(("POST"))
+
+	//BUSQUEDA DE TIENDA PARA RETORNAR PRODUCTOS
+	router.HandleFunc("/getTienda", Products.Tienda).Methods(("POST"))
+
 	//RUTAS PARA CARGA DE PRODUCTOS
 	router.HandleFunc("/CargarInventarios", Products.LoadInv).Methods(("POST"))
+
+	//RUTA PARA CARGA DE PEDIDOS
+	router.HandleFunc("/CargarPedidos", Products.LoadOrders).Methods(("POST"))
 
 	log.Fatal(http.ListenAndServe(":3000", router))
 

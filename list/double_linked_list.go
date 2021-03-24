@@ -13,6 +13,7 @@ type Store struct {
 	Descripcion  string
 	Contacto     string
 	Calificacion int
+	Logo         string
 	//	Inventario   Estructures.AVL
 }
 
@@ -192,6 +193,7 @@ type Group []struct {
 	Descripcion  string `json:"Descripcion"`
 	Contacto     string `json:"Contacto"`
 	Calificacion int    `json:"Calificacion"`
+	Logo         string `json:"Logo"`
 }
 
 func Get_store(list *Lista) Group {
@@ -204,6 +206,7 @@ func Get_store(list *Lista) Group {
 			Descripcion  string "json:\"Descripcion\""
 			Contacto     string "json:\"Contacto\""
 			Calificacion int    "json:\"Calificacion\""
+			Logo         string `json:"Logo"`
 		}(aux.tienda))
 		aux = aux.siguiente
 	}
@@ -216,4 +219,38 @@ func GetCalification(list *Lista) int {
 		res = list.primero.tienda.Calificacion
 	}
 	return res
+}
+
+//DEVUELVE EL JSON DEL INVENTARIO
+func JsonInventory(name string, calification int, list *Lista, dep string) InventoryType {
+	aux := list.primero
+	var res InventoryType
+
+	for aux != nil {
+		if aux.tienda.Nombre == name && aux.tienda.Calificacion == calification {
+			//inv := aux.Inventario.inorder(aux.Inventario.Raiz)
+			res.Tienda = aux.tienda.Nombre
+			res.Calificacion = aux.tienda.Calificacion
+			res.Departamento = dep
+			aux.Inventario.inorder(aux.Inventario.Raiz, &res)
+		}
+		aux = aux.siguiente
+	}
+
+	return res
+}
+
+//BUSCA LA TIENDA Y GUARDA EN EL ARBOL LOS PRODUCTOS
+func Delete_product(name string, calification int, list *Lista, productos Structs.Product) {
+	aux := list.primero
+
+	for aux != nil {
+		if aux.tienda.Nombre == name && aux.tienda.Calificacion == calification {
+			aux.Inventario.searchAndDelete(productos, aux.Inventario.Raiz)
+			//fmt.Println(product.Nombre)
+			//aux.Inventario.buscar(aux.Inventario.)
+		}
+		aux = aux.siguiente
+	}
+
 }

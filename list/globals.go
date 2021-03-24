@@ -2,7 +2,17 @@ package list
 
 import (
 	"fmt"
+
+	"github.com/GAQF202/servidor-rest/Structs"
 )
+
+//STRUCT PARA RETORNAR LOS INVENTARIOS
+type InventoryType struct {
+	Tienda       string
+	Departamento string
+	Calificacion int
+	Products     []Structs.Product
+}
 
 // STRUCT QUE QUE RECIBE LAS TIENDAS
 type Mytype struct {
@@ -15,6 +25,7 @@ type Mytype struct {
 				Descripcion  string `json:"Descripcion"`
 				Contacto     string `json:"Contacto"`
 				Calificacion int    `json:"Calificacion"`
+				Logo         string `json:"Logo"`
 			}
 		}
 	}

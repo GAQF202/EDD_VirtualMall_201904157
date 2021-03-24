@@ -2,49 +2,38 @@ package list
 
 import (
 	"fmt"
-
-	"github.com/GAQF202/servidor-rest/Structs"
 )
 
-//STRUCT PARA GUARDAR PRODUCTOS
-type Product struct {
-	Nombre      string
-	Codigo      int
-	Descripcion string
-	Precio      float64
-	cantidad    int
-	Imagen      string
+type Year struct {
+	Year  int
+	Meses *ListaMes
 }
 
-func hola() {
-	//c := Products.InventoryType{}
-}
-
-type NodoArbol struct {
-	dato         Structs.Product
+type nodoAnio struct {
+	//CADA DATO ES UNA MATRIZ
+	Anio         *Year
 	equilibrador int
-	hizq, hder   *NodoArbol
+	hizq, hder   *nodoAnio
 }
 
 // BST is a set of sorted Nodes
-type AVL struct {
-	Raiz *NodoArbol
+type AVLYear struct {
+	Raiz *nodoAnio
 }
 
-//BUSQUEDA DE UN PRODUCTO POR CODIGO
-func (avl AVL) buscar(value int, r *NodoArbol) *NodoArbol {
+func (avl AVLYear) buscar(value int, r *nodoAnio) *nodoAnio {
 
 	if avl.Raiz == nil {
 		return nil
-	} else if r.dato.Codigo == value {
+	} else if r.Anio.Year == value {
 		return r
-	} else if r.dato.Codigo < value {
+	} else if r.Anio.Year < value {
 		return avl.buscar(value, r.hder)
 	}
 	return avl.buscar(value, r.hizq)
 }
 
-func (avl AVL) obtenerEquilibrio(x *NodoArbol) int {
+func (avl AVLYear) obtenerEquilibrio(x *nodoAnio) int {
 	if x == nil {
 		return -1
 	} else {
@@ -53,7 +42,7 @@ func (avl AVL) obtenerEquilibrio(x *NodoArbol) int {
 }
 
 //ROTACION SIMPLE IZQUIERDA
-func (avl AVL) rotacionIzq(x *NodoArbol) *NodoArbol {
+func (avl AVLYear) rotacionIzq(x *nodoAnio) *nodoAnio {
 	aux := x.hizq
 	x.hizq = aux.hder
 	aux.hder = x
@@ -64,7 +53,7 @@ func (avl AVL) rotacionIzq(x *NodoArbol) *NodoArbol {
 }
 
 //ROTACION SIMPLE DERECHA
-func (avl AVL) rotacionDer(x *NodoArbol) *NodoArbol {
+func (avl AVLYear) rotacionDer(x *nodoAnio) *nodoAnio {
 	aux := x.hder
 	x.hder = aux.hizq
 	aux.hizq = x
@@ -74,8 +63,8 @@ func (avl AVL) rotacionDer(x *NodoArbol) *NodoArbol {
 }
 
 //ROTACION DOBLE IZQUIERDA
-func (avl AVL) rotacionDobleIzq(x *NodoArbol) *NodoArbol {
-	var aux *NodoArbol
+func (avl AVLYear) rotacionDobleIzq(x *nodoAnio) *nodoAnio {
+	var aux *nodoAnio
 
 	x.hizq = avl.rotacionDer(x.hizq)
 	aux = avl.rotacionIzq(x)
@@ -83,8 +72,8 @@ func (avl AVL) rotacionDobleIzq(x *NodoArbol) *NodoArbol {
 }
 
 //ROTACION DOBLE DERECHA
-func (avl AVL) rotacionDobleDer(x *NodoArbol) *NodoArbol {
-	var aux *NodoArbol
+func (avl AVLYear) rotacionDobleDer(x *nodoAnio) *nodoAnio {
+	var aux *nodoAnio
 
 	x.hder = avl.rotacionIzq(x.hder)
 	aux = avl.rotacionDer(x)
@@ -93,29 +82,29 @@ func (avl AVL) rotacionDobleDer(x *NodoArbol) *NodoArbol {
 
 //METODO PARA OBTENER Y ACTUALIZAR ALTURA
 
-func (avl AVL) _add(nuevo *NodoArbol, subAr *NodoArbol) *NodoArbol {
+func (avl AVLYear) _add(nuevo *nodoAnio, subAr *nodoAnio) *nodoAnio {
 	padre := subAr
 
-	if nuevo.dato.Codigo < subAr.dato.Codigo {
+	if nuevo.Anio.Year < subAr.Anio.Year {
 		if subAr.hizq == nil {
 			subAr.hizq = nuevo
 		} else {
 			subAr.hizq = avl._add(nuevo, subAr.hizq)
 			if ((avl.obtenerEquilibrio(subAr.hizq)) - (avl.obtenerEquilibrio(subAr.hder))) == 2 {
-				if nuevo.dato.Codigo < subAr.hizq.dato.Codigo {
+				if nuevo.Anio.Year < subAr.hizq.Anio.Year {
 					padre = avl.rotacionIzq(subAr)
 				} else {
 					padre = avl.rotacionDobleIzq(subAr)
 				}
 			}
 		}
-	} else if nuevo.dato.Codigo > subAr.dato.Codigo {
+	} else if nuevo.Anio.Year > subAr.Anio.Year {
 		if subAr.hder == nil {
 			subAr.hder = nuevo
 		} else {
 			subAr.hder = avl._add(nuevo, subAr.hder)
 			if ((avl.obtenerEquilibrio(subAr.hder)) - (avl.obtenerEquilibrio(subAr.hizq))) == 2 {
-				if nuevo.dato.Codigo > subAr.hder.dato.Codigo {
+				if nuevo.Anio.Year > subAr.hder.Anio.Year {
 					padre = avl.rotacionDer(subAr)
 				} else {
 					padre = avl.rotacionDobleDer(subAr)
@@ -124,7 +113,11 @@ func (avl AVL) _add(nuevo *NodoArbol, subAr *NodoArbol) *NodoArbol {
 		}
 	} else {
 		fmt.Println("Nodo duplicado")
-		avl.buscar(subAr.dato.Codigo, subAr).dato.Cantidad += subAr.dato.Cantidad
+		//SE INSERTA EN EL NODO EXISTENTE
+		avl.buscar(subAr.Anio.Year, subAr).Anio.Meses.Insertar(&subAr.Anio.Meses.primero.Mes)
+		//mes := ListaMes{subAr.Anio.Meses.primero, subAr.Anio.Meses.ultimo, 5}
+		//avl.buscar(subAr.Anio.Year, subAr).Anio.Meses.Insertar(&mes.primero.Mes)
+		//fmt.Println(subAr.Anio.Meses.primero.Mes)
 	}
 	if subAr.hizq == nil && subAr.hder != nil {
 		subAr.equilibrador = subAr.hder.equilibrador + 1
@@ -137,8 +130,8 @@ func (avl AVL) _add(nuevo *NodoArbol, subAr *NodoArbol) *NodoArbol {
 }
 
 //METODO PARA INSERTAR
-func (avl *AVL) Add(value Structs.Product) {
-	nuevo := &NodoArbol{dato: value}
+func (avl *AVLYear) Add(year *Year) {
+	nuevo := &nodoAnio{Anio: year}
 	if avl.Raiz == nil {
 		avl.Raiz = nuevo
 	} else {
@@ -146,45 +139,19 @@ func (avl *AVL) Add(value Structs.Product) {
 	}
 }
 
-func max(v1 int, v2 int) int {
-	if v1 > v2 {
-		return v1
-	}
-	return v2
-}
-
-func (avl AVL) inorder(tmp *NodoArbol, inv *InventoryType) /*Structs.Product*/ {
-	//var res Structs.Product
+func (avl AVLYear) Inorder(tmp *nodoAnio) {
 	if tmp != nil {
-		avl.inorder(tmp.hizq, inv)
-		//res = tmp.dato
-		inv.Products = append(inv.Products, tmp.dato)
-		avl.inorder(tmp.hder, inv)
-	}
-	//return res
-}
-
-//BUSQUEDA DE UN PRODUCTO POR CODIGO Y RESTA LA CANTIDAD DE ESE PRODUCTO
-func (avl AVL) searchAndDelete(producto Structs.Product, r *NodoArbol) {
-	if r != nil {
-		if r.dato.Codigo == producto.Codigo {
-			r.dato.Cantidad -= producto.Cantidad
-		}
-		avl.searchAndDelete(producto, r.hder)
-		avl.searchAndDelete(producto, r.hizq)
+		avl.Inorder(tmp.hizq)
+		fmt.Print(tmp.Anio.Year, " ")
+		avl.Inorder(tmp.hder)
 	}
 }
 
-func (bst AVL) Preorder(tmp *NodoArbol) {
+func (avl AVLYear) Preorder(tmp *nodoAnio) {
 
 	if tmp != nil {
-		fmt.Print(tmp.dato.Nombre, " ")
-		bst.Preorder(tmp.hizq)
-		bst.Preorder(tmp.hder)
+		fmt.Print(tmp.Anio.Year, " ")
+		avl.Preorder(tmp.hizq)
+		avl.Preorder(tmp.hder)
 	}
-}
-
-func main() {
-	t := AVL{}
-	t.Preorder(t.Raiz)
 }
