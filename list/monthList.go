@@ -1,5 +1,9 @@
 package list
 
+import (
+	"github.com/GAQF202/servidor-rest/Structs"
+)
+
 type Month struct {
 	Month  string
 	Matriz *matriz
@@ -48,6 +52,7 @@ func (lista *ListaMes) Insertar(mes *Month) {
 
 }
 
+//SI EL MES EXISTEMANDA A INSERTAR LOS ELEMENTOS DE LA MATRIZ DENTRO DE LA EXISTENTE
 func (lista ListaMes) insertarExistente(mes *Month) {
 	//fmt.Println(lista.primero.Mes.Month)
 
@@ -55,8 +60,9 @@ func (lista ListaMes) insertarExistente(mes *Month) {
 
 	for actual != nil {
 		if actual.Mes.Month == mes.Month {
-			actual.Mes = *mes
-			mes.Matriz.ColumnMajor(actual.Mes.Matriz)
+			//actual.Mes = *mes
+			//mes.Matriz.ColumnMajor(actual.Mes.Matriz)
+			actual.Mes.Matriz.ColumnMajor(mes.Matriz)
 			//actual.Mes.Matriz.Insert()
 		}
 		actual = actual.siguiente
@@ -78,6 +84,38 @@ func (lista *ListaMes) existe(mes *Month) bool {
 
 func (list *ListaMes) IsVoid() bool {
 	return list.primero == nil
+}
+
+//VARIABLE PARA GUARDAR LOS MESES
+var Res []Structs.Mes
+
+func (list *ListaMes) Recorrer_insertar() []Structs.Mes {
+	aux := list.primero
+
+	for aux != nil {
+		//CREO EL MES Y LO INSERTO
+		mes := Structs.Mes{aux.Mes.Month}
+		Res = append(Res, mes)
+		//SIGO RECORRIENDO LA LISTA DE MESES
+		aux = aux.siguiente
+	}
+	return Res
+}
+
+var Meses Structs.MesSeleccionado
+
+//FUNCION PARA BUSCAR EL MES SELECCIONADO
+func (list *ListaMes) buscarMes(mes string) {
+	aux := list.primero
+
+	for aux != nil {
+		if aux.Mes.Month == mes {
+			aux.Mes.Matriz.ColMa()
+			mes := Structs.MesSeleccionado{aux.Mes.Month, Cola}
+			Meses = mes
+		}
+		aux = aux.siguiente
+	}
 }
 
 /*func Delete_Node(lista *Lista, Name string, Cal int) {

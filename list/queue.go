@@ -47,6 +47,18 @@ func (q *Queue) Pop() *Structs.CodeProduct {
 	return &aux
 }
 
+var Productos Structs.CodigoDeProducto
+
+func (q *Queue) Recorrer() {
+	aux := q.first
+
+	for aux != nil {
+		Productos = append(Productos, aux.product.Codigo_producto)
+		aux = aux.siguiente
+	}
+	//return productos
+}
+
 func (q *Queue) Start() *Structs.CodeProduct {
 	return &q.first.product
 }

@@ -157,15 +157,75 @@ func add_orders(orders OrderType) {
 }
 
 //STRUCT PARA ENVIAR EL JSON DE AÑOS Y MESES
-type Tiempo struct {
-	anios []struct {
-		anio  string
-		meses []struct {
-			Mes string
-		}
-	}
+var JsonArbolAnios []Structs.Anio
+
+func JsonMatriz(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	//SE RECORRE EL ARBOL PARA INGRESAR LOS AÑOS EN EL STRUCT
+	JsonArbolAnios = Pedidos.Inorder(Pedidos.Raiz)
+
+	//SE MANDA EL JSON AL BODY
+	w.Header().Set("Content-type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(JsonArbolAnios)
+	//SE REINICIAN LOS STRUCTS DE LAS ESTRUCTURAS INTERNAS
+	list.Anios = []Structs.Anio{}
+	list.Res = []Structs.Mes{}
 }
 
-func JsonMatriz() {
-	Pedidos.Preorder(Pedidos.Raiz)
+type MesAnio struct {
+	Anio int    `json:"Anio"`
+	Mes  string `json:"Mes"`
+}
+
+//STRUCT PARA GUARDAR LA MATRIZ SELECCIONADA
+var Matrix []Structs.MesSeleccionado
+
+var MyA MesAnio
+
+//FUNCION PARA ENVIAR EL DATO DE UNA MATRIZ ESPECIFICA
+func Matriz(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	reqBody, err := ioutil.ReadAll(r.Body)
+
+	json.Unmarshal([]byte(reqBody), &MyA)
+
+	if err != nil {
+		fmt.Fprintf(w, "Insert a Valid Task")
+	}
+	//SE MANDA EL JSON AL BODY
+	w.Header().Set("Content-type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	getJsonMatrix(MyA)
+	json.NewEncoder(w).Encode(Matrix)
+	Matrix = nil
+}
+
+//FUNCION PARA RETORNAR EL JSON DE RESPUES SEGUN LA SELECCION DE MES Y ANIO
+func getJsonMatrix(YearAndMonth MesAnio) {
+	Pedidos.BuscarAnio(Pedidos.Raiz, YearAndMonth.Mes, YearAndMonth.Anio)
+	//Matrix = list.Meses
+	Matrix = append(Matrix, list.Meses)
+	fmt.Println(Matrix)
+
+	list.Meses = Structs.MesSeleccionado{}
+	list.Cola = []Structs.Cola{}
+	list.Productos = Structs.CodigoDeProducto{}
+}
+
+func GetMatriz(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	reqBody, err := ioutil.ReadAll(r.Body)
+
+	json.Unmarshal([]byte(reqBody), &MyA)
+
+	if err != nil {
+		fmt.Fprintf(w, "Insert a Valid Task")
+	}
+	//SE MANDA EL JSON AL BODY
+	w.Header().Set("Content-type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+
+	json.NewEncoder(w).Encode(Matrix)
 }

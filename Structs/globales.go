@@ -44,6 +44,30 @@ func Get_month(mes int) string {
 	return "Mes desconocido"
 }
 
+//ESTRUCTS PARA SELECCION Y BUSQUEDA DE MES Y ANIO
+type Anio struct {
+	Anio  int
+	Meses []Mes
+}
+
+type Mes struct {
+	Mes string
+}
+
+//STRUCTS PARA CUANDO YA SE HAYA SELECCIONADO EL MES Y EL ANIO
+type MesSeleccionado struct {
+	Mes    string
+	Matriz []Cola
+}
+
+type Cola struct {
+	Dia            int
+	Categoria      string
+	CodigoProducto []int
+}
+
+type CodigoDeProducto []int
+
 /*type Year struct {
 	Year int
 }

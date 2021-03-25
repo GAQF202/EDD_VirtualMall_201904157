@@ -2,6 +2,8 @@ package list
 
 import (
 	"fmt"
+
+	"github.com/GAQF202/servidor-rest/Structs"
 )
 
 type Year struct {
@@ -139,12 +141,25 @@ func (avl *AVLYear) Add(year *Year) {
 	}
 }
 
-func (avl AVLYear) Inorder(tmp *nodoAnio) {
+//FUNCION PARA GUARDAR LOS ANIOS
+var Anios []Structs.Anio
+
+//FUNCION PARA GUARDAR LOS ANIOS Y MESES EN EL STRUCT
+func (avl AVLYear) Inorder(tmp *nodoAnio) []Structs.Anio {
+
 	if tmp != nil {
 		avl.Inorder(tmp.hizq)
-		fmt.Print(tmp.Anio.Year, " ")
+		//SE CREA EL STRUCT DE MESES
+		meses := tmp.Anio.Meses.Recorrer_insertar()
+		//SE CREA EL UN STRUCT PARA CADA ANIO
+		anioActual := Structs.Anio{tmp.Anio.Year, meses}
+		//SE INSERTA CADA ANIO NUEVO EN EL STRUCT
+		Anios = append(Anios, anioActual)
+		//SE SIGUE RECORRIENDO EL ARBOL
 		avl.Inorder(tmp.hder)
 	}
+
+	return Anios
 }
 
 func (avl AVLYear) Preorder(tmp *nodoAnio) {
@@ -154,4 +169,18 @@ func (avl AVLYear) Preorder(tmp *nodoAnio) {
 		avl.Preorder(tmp.hizq)
 		avl.Preorder(tmp.hder)
 	}
+}
+
+//FUNCION PARA GUARDAR LOS ANIOS Y MESES EN EL STRUCT
+func (avl AVLYear) BuscarAnio(tmp *nodoAnio, mes string, anio int) {
+
+	if tmp != nil {
+		avl.BuscarAnio(tmp.hizq, mes, anio)
+		if tmp.Anio.Year == anio {
+			tmp.Anio.Meses.buscarMes(mes)
+			fmt.Println(tmp.Anio.Meses.primero.Mes)
+		}
+		avl.BuscarAnio(tmp.hder, mes, anio)
+	}
+
 }

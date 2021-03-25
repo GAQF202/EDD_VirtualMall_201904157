@@ -1,6 +1,10 @@
 package list
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/GAQF202/servidor-rest/Structs"
+)
 
 type nodo struct {
 	//Estos atributos son especificos para la matriz
@@ -347,4 +351,23 @@ func (m *matriz) existen(producto *Queue, x int, y string) {
 		aux.abajo = nuevo
 	}
 
+}
+
+var Cola []Structs.Cola
+
+//INSERTA CADA ELEMENTO DE LA MATRIZ DE MES REPETIDO EN LA MATRIZ DE MES YA EXISTENTE
+func (m *matriz) ColMa() []Structs.Cola {
+	cabecera := m.lst_v.first
+	var colaActual Structs.Cola
+	for cabecera != nil {
+		aux := cabecera.derecha
+		for aux != nil {
+			aux.product.Recorrer()
+			colaActual = Structs.Cola{aux.x, aux.y, Productos}
+			aux = aux.derecha
+		}
+		Cola = append(Cola, colaActual)
+		cabecera = cabecera.siguiente
+	}
+	return Cola
 }

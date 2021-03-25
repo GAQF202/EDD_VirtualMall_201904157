@@ -294,6 +294,12 @@ func main() {
 	router.HandleFunc("/Eliminar", Delete_Store).Methods(("DELETE"))
 	router.HandleFunc("/TiendaEspecifica", Browser).Methods(("POST"))
 
+	//ENPOINT PARA OBTENER LA EL JSON DE ARBOL DE AÑOS Y LISTA DE MESES
+	router.HandleFunc("/Pedidos", Products.JsonMatriz).Methods(("POST"))
+	//ENDPOINT PARA OBTENER LA MATRIZ Y LAS COLAS
+	router.HandleFunc("/Matriz", Products.Matriz).Methods(("POST"))
+	router.HandleFunc("/Matriz", Products.GetMatriz).Methods(("GET"))
+
 	//ENVIO DE PRODUCTOS CONFIRMADOS EN EL CARRITO DE COMPRAS
 	router.HandleFunc("/comprar", Products.Cobrar).Methods(("POST"))
 
