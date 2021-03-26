@@ -1,9 +1,7 @@
 digraph 
  { rankdir=LR concentrate=false 
-2016->Agosto2016->Abril2016
+2016->Agosto2016
 Agosto2016[label="Agosto" shape=box]
-Abril2016->Agosto2016
-Abril2016[label="Abril" shape=box]
 2019->Diciembre2019
 Diciembre2019[label="Diciembre" shape=box]
 2020->Agosto2020

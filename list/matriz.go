@@ -2,6 +2,7 @@ package list
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/GAQF202/servidor-rest/Structs"
 )
@@ -195,6 +196,34 @@ func (m *matriz) ColumnMajor(Matriz *matriz) {
 		}
 		cabecera = cabecera.siguiente
 	}
+}
+
+//INSERTA CADA ELEMENTO DE LA MATRIZ DE MES REPETIDO EN LA MATRIZ DE MES YA EXISTENTE
+var Matrix = ""
+
+func (m *matriz) RecorrerColumnMajor() string {
+	cabecera := m.lst_v.first
+
+	horizontales := "{rank= same "
+	verticales := "{rank= same "
+	for cabecera != nil {
+		aux := cabecera.derecha
+		horizontales += strconv.Itoa(aux.x) + " "
+		for aux != nil {
+			verticales += aux.y + " "
+			Matrix += strconv.Itoa(aux.x) + aux.y + "->" + strconv.Itoa(aux.arriba.x) + aux.arriba.y + " "
+			verticales += strconv.Itoa(aux.x) + aux.y + " "
+			//Matrix += strconv.Itoa(aux.x) + "," + aux.y + "\n"
+			//Matrix += aux.y + "\n"
+			aux = aux.derecha
+		}
+		cabecera = cabecera.siguiente
+	}
+	horizontales += "}"
+	verticales += "}"
+	Matrix += horizontales
+	Matrix += verticales
+	return Matrix
 }
 
 func (m *matriz) noExisten(producto *Queue, x int, y string) {

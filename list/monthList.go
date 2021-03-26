@@ -141,7 +141,9 @@ func (list *ListaMes) GetCodigoInterno(anio string) string {
 			res += aux.Mes.Month + anio + "\n"
 			res += aux.Mes.Month + anio + "[label=\"" + aux.Mes.Month + "\" shape=box]\n"
 		}
-
+		aux.Mes.Matriz.RecorrerColumnMajor()
+		//fmt.Println(Matrix)
+		Matrix = ""
 		aux = aux.siguiente
 	}
 	return res

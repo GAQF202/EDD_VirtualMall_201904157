@@ -174,7 +174,6 @@ func (avl AVLYear) RecorrerInOrder(tmp *nodoAnio) string {
 	if tmp != nil {
 		avl.RecorrerInOrder(tmp.hizq)
 		Ver += strconv.Itoa(tmp.Anio.Year) + "->" + tmp.Anio.Meses.GetCodigoInterno(strconv.Itoa(tmp.Anio.Year))
-		fmt.Println(Ver)
 		tmp.Anio.Meses.GetCodigoInterno(strconv.Itoa(tmp.Anio.Year))
 		avl.RecorrerInOrder(tmp.hder)
 	}
