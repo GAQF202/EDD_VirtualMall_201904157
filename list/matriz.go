@@ -182,14 +182,15 @@ func (n *nodo) print() {
 
 //INSERTA CADA ELEMENTO DE LA MATRIZ DE MES REPETIDO EN LA MATRIZ DE MES YA EXISTENTE
 func (m *matriz) ColumnMajor(Matriz *matriz) {
-	cabecera := m.lst_v.first
-
+	cabecera := Matriz.lst_v.first
+	fmt.Println()
 	for cabecera != nil {
 		aux := cabecera.derecha
 		for aux != nil {
 			//aux.print(aux.abajo)
 			/*fmt.Println(aux.product.first.product.Codigo_producto)*/
-			Matriz.Insert(aux.product, aux.x, aux.y)
+			//Matriz.Insert(aux.product, aux.x, aux.y)
+			m.Insert(aux.product, aux.x, aux.y)
 			aux = aux.derecha
 		}
 		cabecera = cabecera.siguiente
@@ -368,6 +369,9 @@ func (m *matriz) ColMa() []Structs.Cola {
 		}
 		Cola = append(Cola, colaActual)
 		cabecera = cabecera.siguiente
+		//SE BORRAN LOS PRODUCTOS DESPUES DE SE INSERTADOS
+		Productos = Structs.CodigoDeProducto{}
 	}
+
 	return Cola
 }

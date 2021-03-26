@@ -2,6 +2,7 @@ package list
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/GAQF202/servidor-rest/Structs"
 )
@@ -116,7 +117,10 @@ func (avl AVLYear) _add(nuevo *nodoAnio, subAr *nodoAnio) *nodoAnio {
 	} else {
 		fmt.Println("Nodo duplicado")
 		//SE INSERTA EN EL NODO EXISTENTE
-		avl.buscar(subAr.Anio.Year, subAr).Anio.Meses.Insertar(&subAr.Anio.Meses.primero.Mes)
+		avl.buscar(nuevo.Anio.Year, subAr).Anio.Meses.Insertar(&nuevo.Anio.Meses.primero.Mes)
+		//fmt.Println(subAr.Anio.Meses.ultimo.Mes.Month)
+		//fmt.Println("Es AQUI", avl.buscar(subAr.Anio.Year, subAr).Anio.Meses)
+
 		//mes := ListaMes{subAr.Anio.Meses.primero, subAr.Anio.Meses.ultimo, 5}
 		//avl.buscar(subAr.Anio.Year, subAr).Anio.Meses.Insertar(&mes.primero.Mes)
 		//fmt.Println(subAr.Anio.Meses.primero.Mes)
@@ -158,17 +162,23 @@ func (avl AVLYear) Inorder(tmp *nodoAnio) []Structs.Anio {
 		//SE SIGUE RECORRIENDO EL ARBOL
 		avl.Inorder(tmp.hder)
 	}
-
+	Res = []Structs.Mes{}
 	return Anios
 }
 
-func (avl AVLYear) Preorder(tmp *nodoAnio) {
+//FUNCION PARA RECORRER EL ARBOL INORDER
+var Ver = ""
+
+func (avl AVLYear) RecorrerInOrder(tmp *nodoAnio) string {
 
 	if tmp != nil {
-		fmt.Print(tmp.Anio.Year, " ")
-		avl.Preorder(tmp.hizq)
-		avl.Preorder(tmp.hder)
+		avl.RecorrerInOrder(tmp.hizq)
+		Ver += strconv.Itoa(tmp.Anio.Year) + "->" + tmp.Anio.Meses.GetCodigoInterno(strconv.Itoa(tmp.Anio.Year))
+		fmt.Println(Ver)
+		tmp.Anio.Meses.GetCodigoInterno(strconv.Itoa(tmp.Anio.Year))
+		avl.RecorrerInOrder(tmp.hder)
 	}
+	return Ver
 }
 
 //FUNCION PARA GUARDAR LOS ANIOS Y MESES EN EL STRUCT
@@ -182,5 +192,27 @@ func (avl AVLYear) BuscarAnio(tmp *nodoAnio, mes string, anio int) {
 		}
 		avl.BuscarAnio(tmp.hder, mes, anio)
 	}
+}
 
+//METODO PARA OBTENER EL CODIGO DOT DEL ARBOl
+
+func (avl *nodoAnio) GetCodigoInterno(r *nodoAnio) string {
+	var res string
+
+	if r.hizq != nil {
+		res += strconv.Itoa(r.Anio.Year) + "->" + strconv.Itoa(r.hizq.Anio.Year) + "\n"
+		r.hizq.GetCodigoInterno(r.hizq)
+	}
+	if r.hder != nil {
+		res += strconv.Itoa(r.Anio.Year) + "->" + strconv.Itoa(r.hder.Anio.Year) + "\n"
+		r.hder.GetCodigoInterno(r.hder)
+	}
+	/*if r.hizq != nil {
+		res += r.hizq.GetCodigoInterno(r.hizq) + "->" + strconv.Itoa(r.Anio.Year) + "\n"
+	}
+	if r.hder != nil {
+		res += r.hder.GetCodigoInterno(r.hder) + "->" + strconv.Itoa(r.Anio.Year) + "\n"
+	}*/
+
+	return res
 }

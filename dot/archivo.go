@@ -47,3 +47,11 @@ func Graph() {
 	mode := int(0777)
 	ioutil.WriteFile("Diagram.svg", cmd, os.FileMode(mode))
 }
+
+//FUNCION PARA GRAFICAR EL DOT PASANDO LA RUTA
+func GraphEvery(fileName string, extension string) {
+	path, _ := exec.LookPath("dot")
+	cmd, _ := exec.Command(path, "-T"+extension, "DotFile.txt").Output()
+	mode := int(0777)
+	ioutil.WriteFile("C:/Users/Gerson/Documents/Go/src/github.com/GAQF202/servidor-rest/Frontend/public/"+fileName+"."+extension, cmd, os.FileMode(mode))
+}

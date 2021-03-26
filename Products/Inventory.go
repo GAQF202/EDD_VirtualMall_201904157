@@ -120,7 +120,9 @@ func LoadOrders(w http.ResponseWriter, r *http.Request) {
 	add_orders(Order)
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(Order)
-
+	reporteAnios()
+	reporteMeses()
+	list.Ver = ""
 }
 
 //CREA LA ESTRUCTURA PARA CADA NODO DE ANIO
@@ -153,7 +155,7 @@ func add_orders(orders OrderType) {
 		Pedidos.Add(&anioActual)
 	}
 
-	Pedidos.Preorder(Pedidos.Raiz)
+	//Pedidos.Preorder(Pedidos.Raiz)
 }
 
 //STRUCT PARA ENVIAR EL JSON DE AÑOS Y MESES

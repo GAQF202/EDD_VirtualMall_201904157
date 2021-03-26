@@ -38,6 +38,7 @@ func (lista *ListaMes) Insertar(mes *Month) {
 			lista.ultimo = nuevo
 			lista.primero.siguiente, lista.primero.anterior = nil, nil
 			lista.contador++
+
 		} else {
 			aux := lista.ultimo
 			lista.ultimo.siguiente = nuevo
@@ -45,6 +46,7 @@ func (lista *ListaMes) Insertar(mes *Month) {
 			lista.ultimo.anterior = aux
 
 			lista.contador++
+
 		}
 	} else {
 		lista.insertarExistente(mes)
@@ -53,16 +55,19 @@ func (lista *ListaMes) Insertar(mes *Month) {
 }
 
 //SI EL MES EXISTEMANDA A INSERTAR LOS ELEMENTOS DE LA MATRIZ DENTRO DE LA EXISTENTE
-func (lista ListaMes) insertarExistente(mes *Month) {
+func (lista *ListaMes) insertarExistente(mes *Month) {
 	//fmt.Println(lista.primero.Mes.Month)
 
-	actual := lista.primero
+	var actual *NodoMes
+	actual = lista.primero
 
 	for actual != nil {
 		if actual.Mes.Month == mes.Month {
+
 			//actual.Mes = *mes
 			//mes.Matriz.ColumnMajor(actual.Mes.Matriz)
 			actual.Mes.Matriz.ColumnMajor(mes.Matriz)
+			//mes.Matriz.ColumnMajor(mes.Matriz)
 			//actual.Mes.Matriz.Insert()
 		}
 		actual = actual.siguiente
@@ -116,6 +121,30 @@ func (list *ListaMes) buscarMes(mes string) {
 		}
 		aux = aux.siguiente
 	}
+}
+
+func (list *ListaMes) GetCodigoInterno(anio string) string {
+	aux := list.primero
+	res := ""
+
+	for aux != nil {
+
+		if aux.siguiente != nil {
+			res += aux.Mes.Month + anio + "->" + aux.siguiente.Mes.Month + anio + "\n"
+			res += aux.Mes.Month + anio + "[label=\"" + aux.Mes.Month + "\" shape=box]\n"
+		}
+		if aux.anterior != nil {
+			res += aux.Mes.Month + anio + "->" + aux.anterior.Mes.Month + anio + "\n"
+			res += aux.Mes.Month + anio + "[label=\"" + aux.Mes.Month + "\" shape=box]\n"
+		}
+		if aux.siguiente == nil && aux.anterior == nil {
+			res += aux.Mes.Month + anio + "\n"
+			res += aux.Mes.Month + anio + "[label=\"" + aux.Mes.Month + "\" shape=box]\n"
+		}
+
+		aux = aux.siguiente
+	}
+	return res
 }
 
 /*func Delete_Node(lista *Lista, Name string, Cal int) {

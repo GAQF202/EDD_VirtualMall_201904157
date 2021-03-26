@@ -1,13 +1,11 @@
-digraph G{ 
- node[style="filled",fillcolor="#8df7ef",shape="record"]  VectorNode[label="<0>0|<1>1|<2>2|<3>3|<4>4|<5>5|<6>6|<7>7|<8>8|<9>9|<10>10|<11>11|<12>12|<13>13|<14>14|<15>15|<16>16|<17>17|<18>18|<19>19"] node31[label="Aguayo Cepeda S.A.",fillcolor="white",shape="record",color="pink"]
- VectorNode:"3" -> node31
- node32[label="Amaya, Rolón y Chavarría Asociados",fillcolor="white",shape="record",color="pink"]
- VectorNode:"4" -> node32
- node33[label="Amaya, Rolón y Chavarría Asociados",fillcolor="white",shape="record",color="pink"]
- VectorNode:"7" -> node33
- node34[label="Aguayo Cepeda S.A.",fillcolor="white",shape="record",color="pink"]
- VectorNode:"8" -> node34
- node35[label="Briones Pineda S.A.",fillcolor="white",shape="record",color="pink"]
- VectorNode:"15" -> node35
-
- }
+digraph 
+ { rankdir=LR concentrate=false 
+2016->Agosto2016->Abril2016
+Agosto2016[label="Agosto" shape=box]
+Abril2016->Agosto2016
+Abril2016[label="Abril" shape=box]
+2019->Diciembre2019
+Diciembre2019[label="Diciembre" shape=box]
+2020->Agosto2020
+Agosto2020[label="Agosto" shape=box]
+}

@@ -318,6 +318,11 @@ func main() {
 	//RUTA PARA CARGA DE PEDIDOS
 	router.HandleFunc("/CargarPedidos", Products.LoadOrders).Methods(("POST"))
 
+	//ENPOINTS PARA GRAFICAR REPORTES DE ESTRUCTURAS
+	router.HandleFunc("/getMatriz", getCarrito).Methods(("GET"))
+	router.HandleFunc("/getAnios", Products.GetAnios).Methods(("GET"))
+	router.HandleFunc("/getMeses", getCarrito).Methods(("GET"))
+
 	log.Fatal(http.ListenAndServe(":3000", router))
 
 }
