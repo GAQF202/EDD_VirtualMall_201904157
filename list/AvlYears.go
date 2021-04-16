@@ -194,16 +194,16 @@ func (avl AVLYear) BuscarAnio(tmp *nodoAnio, mes string, anio int) {
 }
 
 //METODO PARA OBTENER EL CODIGO DOT DEL ARBOl
+var Arbol string
 
 func (avl *nodoAnio) GetCodigoInterno(r *nodoAnio) string {
-	var res string
 
 	if r.hizq != nil {
-		res += strconv.Itoa(r.Anio.Year) + "->" + strconv.Itoa(r.hizq.Anio.Year) + "\n"
+		Arbol += strconv.Itoa(r.Anio.Year) + "->" + strconv.Itoa(r.hizq.Anio.Year) + "\n"
 		r.hizq.GetCodigoInterno(r.hizq)
 	}
 	if r.hder != nil {
-		res += strconv.Itoa(r.Anio.Year) + "->" + strconv.Itoa(r.hder.Anio.Year) + "\n"
+		Arbol += strconv.Itoa(r.Anio.Year) + "->" + strconv.Itoa(r.hder.Anio.Year) + "\n"
 		r.hder.GetCodigoInterno(r.hder)
 	}
 	/*if r.hizq != nil {
@@ -213,5 +213,5 @@ func (avl *nodoAnio) GetCodigoInterno(r *nodoAnio) string {
 		res += r.hder.GetCodigoInterno(r.hder) + "->" + strconv.Itoa(r.Anio.Year) + "\n"
 	}*/
 
-	return res
+	return Arbol
 }

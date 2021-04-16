@@ -2,12 +2,13 @@ package Structs
 
 //STRUCT PARA GUARDAR PRODUCTOS
 type Product struct {
-	Nombre      string
-	Codigo      int
-	Descripcion string
-	Precio      float64
-	Cantidad    int
-	Imagen      string
+	Nombre         string
+	Codigo         int
+	Descripcion    string
+	Precio         float64
+	Cantidad       int
+	Imagen         string
+	Almacenamiento string
 }
 
 type CodeProduct struct {
@@ -67,6 +68,46 @@ type Cola struct {
 }
 
 type CodigoDeProducto []int
+
+//TYPE GLOBAL PARA MANEJAR LOS USUARIOS
+type Usuario struct {
+	Dpi      int
+	Nombre   string
+	Correo   string
+	Password string
+	Cuenta   string
+}
+
+var EstacionesDePedidos []string
+
+func ExisteEstacion(list []string, val string) bool {
+	res := false
+	for _, element := range list {
+		if element == val {
+			res = true
+		}
+	}
+	return res
+}
+
+type Caminos struct {
+	Inicio string
+	Fin    string
+	Puntos []string
+}
+
+//STRUCT PARA RECIBIR EL GRAFO
+type Rec struct {
+	Nodos []struct {
+		Nombre  string `json:"Nombre"`
+		Enlaces []struct {
+			Nombre    string `json:"Nombre"`
+			Distancia int    `json:"Distancia"`
+		}
+	}
+	PosicionInicialRobot string `json:"PosicionInicialRobot"`
+	Entrega              string `json:"Entrega"`
+}
 
 /*type Year struct {
 	Year int

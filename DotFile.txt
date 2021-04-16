@@ -1,9 +1,12 @@
-digraph 
+graph 
  { rankdir=LR concentrate=false 
-2016->Agosto2016
-Agosto2016[label="Agosto" shape=box]
-2019->Diciembre2019
-Diciembre2019[label="Diciembre" shape=box]
-2020->Agosto2020
-Agosto2020[label="Agosto" shape=box]
-}
+Despacho [label="Despacho"];
+Despacho -- Aranceles[label = 5];
+Despacho -- Reparaciones[label = 6];
+Despacho -- Textiles[label = 100];
+Aranceles [label="Aranceles"];
+Aranceles -- Textiles[label = 10];
+Textiles [label="Textiles"];
+Textiles -- Reparaciones[label = 7];
+Reparaciones [label="Reparaciones"];
+Textiles--Aranceles[color="#f02c2c"];Aranceles--Despacho[color="#f02c2c"];Despacho--Reparaciones[color="#f02c2c"];Reparaciones--Textiles[color="#f02c2c"];}

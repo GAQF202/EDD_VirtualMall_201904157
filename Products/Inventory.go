@@ -22,12 +22,13 @@ type InventoryType struct {
 		Departamento string `json:"Departamento"`
 		Calificacion int    `json:"Calificacion"`
 		Productos    []struct {
-			Nombre      string  `json:"Nombre"`
-			Codigo      int     `json:"Codigo"`
-			Descripcion string  `json:"Descripcion"`
-			Precio      float64 `json:"Precio"`
-			Cantidad    int     `json:"Cantidad"`
-			Imagen      string  `json:"Imagen"`
+			Nombre         string  `json:"Nombre"`
+			Codigo         int     `json:"Codigo"`
+			Descripcion    string  `json:"Descripcion"`
+			Precio         float64 `json:"Precio"`
+			Cantidad       int     `json:"Cantidad"`
+			Imagen         string  `json:"Imagen"`
+			Almacenamiento string  `json:"Almacenamiento"`
 		}
 	}
 }
@@ -37,12 +38,13 @@ type CarritoType struct {
 	Departamento string `json:"Departamento"`
 	Calificacion int    `json:"Calificacion"`
 	Productos    []struct {
-		Nombre      string  `json:"Nombre"`
-		Codigo      int     `json:"Codigo"`
-		Descripcion string  `json:"Descripcion"`
-		Precio      float64 `json:"Precio"`
-		Cantidad    int     `json:"Cantidad"`
-		Imagen      string  `json:"Imagen"`
+		Nombre         string  `json:"Nombre"`
+		Codigo         int     `json:"Codigo"`
+		Descripcion    string  `json:"Descripcion"`
+		Precio         float64 `json:"Precio"`
+		Cantidad       int     `json:"Cantidad"`
+		Imagen         string  `json:"Imagen"`
+		Almacenamiento string  `json:"Almacenamiento"`
 	}
 }
 
@@ -61,12 +63,13 @@ type OrderType struct {
 
 //STRUCT PARA GUARDAR PRODUCTOS
 type Product struct {
-	Nombre      string
-	Codigo      int
-	Descripcion string
-	Precio      float64
-	cantidad    int
-	Imagen      string
+	Nombre         string
+	Codigo         int
+	Descripcion    string
+	Precio         float64
+	cantidad       int
+	Imagen         string
+	Almacenamiento string
 }
 
 var Inventory InventoryType
@@ -80,14 +83,10 @@ func LoadInv(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Insert a Valid Task")
 	}
 
-	//w.Header().Set("Content-type", "application/json")
-	//w.WriteHeader(http.StatusCreated)
-
 	json.Unmarshal([]byte(reqBody), &Inventory)
 	//SE LLAMA A LA FUNCION PARA CREAR LOS INVENTARIOS DENTRO DE LAS TIENDAS
 	add_inventory(Inventory)
-	//fmt.Println(Inventory)
-	//json.NewEncoder(w).Encode(Inventory)
+
 }
 
 //FUNCION PARA INSERTAR LOS INVENTARIOS DENTRO DE LAS TIENDAS
@@ -97,7 +96,7 @@ func add_inventory(inventory InventoryType) {
 		Position := list.Get_position(inventory.Inventarios[i].Departamento, inventory.Inventarios[i].Tienda, inventory.Inventarios[i].Calificacion)
 		for j := 0; j < len(inventory.Inventarios[i].Productos); j++ {
 			tmp := inventory.Inventarios[i].Productos[j]
-			product := Structs.Product{tmp.Nombre, tmp.Codigo, tmp.Descripcion, tmp.Precio, tmp.Cantidad, tmp.Imagen}
+			product := Structs.Product{tmp.Nombre, tmp.Codigo, tmp.Descripcion, tmp.Precio, tmp.Cantidad, tmp.Imagen, tmp.Almacenamiento}
 			list.Get_store_node(inventory.Inventarios[i].Tienda, inventory.Inventarios[i].Calificacion, list.GlobalVector[Position], product)
 		}
 		list.VerNodos(list.GlobalVector[Position])
