@@ -1,6 +1,10 @@
 package list
 
-import "github.com/GAQF202/servidor-rest/Structs"
+import (
+	"strconv"
+
+	"github.com/GAQF202/servidor-rest/Structs"
+)
 
 type Usuario struct {
 	Dpi      int
@@ -245,6 +249,38 @@ func (a BTree) Buscar(key int, tmp *NodoBTree) Structs.Usuario {
 		}
 	}
 	return encontrado
+}
+
+var GraficaArbol string = ""
+var contadorPagina int = 0
+
+func VerElementos(n *NodoBTree) {
+	dot := "\npagina" + strconv.Itoa(n.Key[0].Dpi) + "[label=\""
+	contadorPagina++
+	for j := 0; j < len(n.Key); j++ {
+		if j < len(n.Key)-1 {
+			if n.Key[j].Dpi != 0 {
+				dot += "<" + strconv.Itoa(n.Key[j].Dpi) + "h" + strconv.Itoa(j) + ">" + "|"
+				dot += "<" + strconv.Itoa(n.Key[j].Dpi) + ">" + strconv.Itoa(n.Key[j].Dpi) + "|"
+				//dot += "<" + strconv.Itoa(n.Key[j].Dpi) + "h" + strconv.Itoa(j) + ">" + "|"
+			}
+		} else {
+			dot += "<" + strconv.Itoa(n.Key[j].Dpi) + "h" + strconv.Itoa(j) + ">" + "|"
+			dot += "<" + strconv.Itoa(n.Key[j].Dpi) + ">" + strconv.Itoa(n.Key[j].Dpi) + "|"
+			dot += "<" + strconv.Itoa(n.Key[j].Dpi) + "h" + strconv.Itoa(j) + ">"
+		}
+		if n.Hijo[j] != nil {
+			GraficaArbol += "\npagina" + strconv.Itoa(n.Key[0].Dpi) + ":\"" + strconv.Itoa(n.Key[j].Dpi) + "h" + strconv.Itoa(j) + "\" -> pagina" + strconv.Itoa(n.Hijo[j].Key[0].Dpi)
+		}
+	}
+	for j := 0; j < len(n.Hijo); j++ {
+		if n.Hijo[j] != nil {
+			//fmt.Println(n.Hijo[j])
+			VerElementos(n.Hijo[j])
+		}
+	}
+	//fmt.Println(dot + "\"]")
+	GraficaArbol += dot + "\"]\n"
 }
 
 func ordenarPagina(paginaDesordenada *NodoBTree) {

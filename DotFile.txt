@@ -1,12 +1,123 @@
-graph 
- { rankdir=LR concentrate=false 
-Despacho [label="Despacho"];
-Despacho -- Aranceles[label = 5];
-Despacho -- Reparaciones[label = 6];
-Despacho -- Textiles[label = 100];
-Aranceles [label="Aranceles"];
-Aranceles -- Textiles[label = 10];
-Textiles [label="Textiles"];
-Textiles -- Reparaciones[label = 7];
-Reparaciones [label="Reparaciones"];
-Textiles--Aranceles[color="#f02c2c"];Aranceles--Despacho[color="#f02c2c"];Despacho--Reparaciones[color="#f02c2c"];Reparaciones--Textiles[color="#f02c2c"];}
+digraph G{ 
+ node[style="filled",fillcolor="#8df7ef",shape="record"]  VectorNode[label="<0>0|<1>1|<2>2|<3>3|<4>4|<5>5|<6>6|<7>7|<8>8|<9>9|<10>10|<11>11|<12>12|<13>13|<14>14|<15>15|<16>16|<17>17|<18>18|<19>19|<20>20|<21>21|<22>22|<23>23|<24>24|<25>25|<26>26|<27>27|<28>28|<29>29|<30>30|<31>31|<32>32|<33>33|<34>34|<35>35|<36>36|<37>37|<38>38|<39>39|<40>40|<41>41|<42>42|<43>43|<44>44|<45>45|<46>46|<47>47|<48>48|<49>49|<50>50|<51>51|<52>52|<53>53|<54>54|<55>55|<56>56|<57>57|<58>58|<59>59|<60>60|<61>61|<62>62|<63>63|<64>64|<65>65|<66>66|<67>67|<68>68|<69>69|<70>70|<71>71|<72>72|<73>73|<74>74|<75>75|<76>76|<77>77|<78>78|<79>79|<80>80|<81>81|<82>82|<83>83|<84>84|<85>85|<86>86|<87>87|<88>88|<89>89|<90>90|<91>91|<92>92|<93>93|<94>94|<95>95|<96>96|<97>97|<98>98|<99>99"] node1[label="Arguello y Valdivia",fillcolor="white",shape="record",color="pink"]
+ node1->node2->node1
+
+ VectorNode:"0" -> node1
+ node2[label="Alonzo y Rosado",fillcolor="white",shape="record",color="pink"] node3[label="Alonso, Balderas y Fierro Asociados",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"1" -> node3
+ node4[label="Arevalo y Villa",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"2" -> node4
+ node5[label="Alarcón Armas Hermanos",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"3" -> node5
+ node6[label="Alonso, Balderas y Fierro Asociados",fillcolor="white",shape="record",color="pink"]
+ node6->node7->node6
+
+ VectorNode:"6" -> node6
+ node7[label="Arevalo y Villa",fillcolor="white",shape="record",color="pink"] node8[label="Arguello y Valdivia",fillcolor="white",shape="record",color="pink"]
+ node8->node9->node8
+
+ VectorNode:"9" -> node8
+ node9[label="Alonzo y Rosado",fillcolor="white",shape="record",color="pink"] node10[label="Arguello y Valdivia",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"10" -> node10
+ node11[label="Arguello y Valdivia",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"16" -> node11
+ node12[label="Alonso, Balderas y Fierro Asociados",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"18" -> node12
+ node13[label="Alonzo y Rosado",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"21" -> node13
+ node14[label="Alonso, Balderas y Fierro Asociados",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"22" -> node14
+ node15[label="Arguello y Valdivia",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"24" -> node15
+ node16[label="Barrientos y Rivera",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"25" -> node16
+ node17[label="Batista Herrera e Hijos",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"26" -> node17
+ node18[label="Barragán Hermanos",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"27" -> node18
+ node19[label="Bravo e Hijos",fillcolor="white",shape="record",color="pink"]
+ node19->node20->node19
+
+ VectorNode:"29" -> node19
+ node20[label="Bernal, Rosado y Puga Asociados",fillcolor="white",shape="record",color="pink"] node21[label="Bravo e Hijos",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"31" -> node21
+ node22[label="Barrientos y Rivera",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"32" -> node22
+ node23[label="Barrientos y Rivera",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"37" -> node23
+ node24[label="Batista Herrera e Hijos",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"38" -> node24
+ node25[label="Bravo e Hijos",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"39" -> node25
+ node26[label="Bravo e Hijos",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"42" -> node26
+ node27[label="Barrientos y Rivera",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"44" -> node27
+ node28[label="Batista Herrera e Hijos",fillcolor="white",shape="record",color="pink"]
+ node28->node29->node28
+
+ VectorNode:"47" -> node28
+ node29[label="Bernal, Rosado y Puga Asociados",fillcolor="white",shape="record",color="pink"] node30[label="Barrientos y Rivera",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"48" -> node30
+ node31[label="Bravo e Hijos",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"49" -> node31
+ node32[label="Correa, Zúñiga y Burgos Asociados",fillcolor="white",shape="record",color="pink"]
+ node32->node33->node32
+
+ VectorNode:"52" -> node32
+ node33[label="Cortez y Roybal",fillcolor="white",shape="record",color="pink"] node34[label="Casanova Cepeda Hermanos",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"53" -> node34
+ node35[label="Correa, Zúñiga y Burgos Asociados",fillcolor="white",shape="record",color="pink"]
+ node35->node36->node35
+
+ VectorNode:"56" -> node35
+ node36[label="Casanova Cepeda Hermanos",fillcolor="white",shape="record",color="pink"]
+ node36->node37->node36
+ node37[label="Cortez y Roybal",fillcolor="white",shape="record",color="pink"] node38[label="Casanova Cepeda Hermanos",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"61" -> node38
+ node39[label="Correa, Zúñiga y Burgos Asociados",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"62" -> node39
+ node40[label="Cervantes y Vázquez",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"67" -> node40
+ node41[label="Casanova Cepeda Hermanos",fillcolor="white",shape="record",color="pink"]
+ node41->node42->node41
+
+ VectorNode:"68" -> node41
+ node42[label="Cortez y Roybal",fillcolor="white",shape="record",color="pink"] node43[label="Correa, Zúñiga y Burgos Asociados",fillcolor="white",shape="record",color="pink"]
+ node43->node44->node43
+
+ VectorNode:"69" -> node43
+ node44[label="Cortés, Arias y Carrasco Asociados",fillcolor="white",shape="record",color="pink"] node45[label="Correa, Zúñiga y Burgos Asociados",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"73" -> node45
+ node46[label="Delarosa S.L.",fillcolor="white",shape="record",color="pink"]
+ node46->node47->node46
+
+ VectorNode:"77" -> node46
+ node47[label="Delapaz, Valenzuela y Vallejo Asociados",fillcolor="white",shape="record",color="pink"]
+ node47->node48->node47
+ node48[label="Delapaz Franco e Hijos",fillcolor="white",shape="record",color="pink"]
+ node48->node49->node48
+ node49[label="Delrío Tapia Hermanos",fillcolor="white",shape="record",color="pink"] node50[label="Delagarza y Cavazos",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"78" -> node50
+ node51[label="Delapaz, Valenzuela y Vallejo Asociados",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"80" -> node51
+ node52[label="Delarosa S.L.",fillcolor="white",shape="record",color="pink"]
+ node52->node53->node52
+
+ VectorNode:"84" -> node52
+ node53[label="Delapaz Franco e Hijos",fillcolor="white",shape="record",color="pink"] node54[label="Delarosa S.L.",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"89" -> node54
+ node55[label="Delagarza y Cavazos",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"91" -> node55
+ node56[label="Delarosa S.L.",fillcolor="white",shape="record",color="pink"]
+ node56->node57->node56
+
+ VectorNode:"93" -> node56
+ node57[label="Delapaz, Valenzuela y Vallejo Asociados",fillcolor="white",shape="record",color="pink"] node58[label="Delapaz Franco e Hijos",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"94" -> node58
+ node59[label="Delarosa S.L.",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"98" -> node59
+ node60[label="Delapaz, Valenzuela y Vallejo Asociados",fillcolor="white",shape="record",color="pink"]
+ VectorNode:"99" -> node60
+
+ }

@@ -54,7 +54,12 @@ func InsertInBTree(cuentas acount) {
 		//SE INSERTAN LOS USUARIOS EN ARBOL LOCAL
 		ArbolDeUsuariosGlobal.Insert(cuentaActual)
 	}
-	fmt.Println(ArbolDeUsuariosGlobal.Root)
+
+	//SE GRAFICA EL ARBOL A PARTIR DE LA RAIZ
+	list.GraficaArbol = ""
+	list.VerElementos(ArbolDeUsuariosGlobal.Root)
+	fmt.Println(list.GraficaArbol)
+	//fmt.Println(ArbolDeUsuariosGlobal.Root)
 	//SE PASA EL ARBOL LOCAL A GLOBAL
 	//ArbolDeUsuariosGlobal = *ArbolDeUsuarios
 }
@@ -72,7 +77,11 @@ func LoadAcount(w http.ResponseWriter, r *http.Request) {
 	dpi, err := strconv.Atoi(usuario.Dpi)
 	cuentaActual := Structs.Usuario{dpi, usuario.Nombre, usuario.Correo, usuario.Password, usuario.Cuenta}
 	ArbolDeUsuariosGlobal.Insert(cuentaActual)
-	fmt.Println(ArbolDeUsuariosGlobal.Root)
+
+	//SE IMPRIME EL ARBOL A PARTIR DE LA RAIZ
+	list.GraficaArbol = ""
+	list.VerElementos(ArbolDeUsuariosGlobal.Root)
+	fmt.Println(list.GraficaArbol)
 }
 
 type getUser struct {
