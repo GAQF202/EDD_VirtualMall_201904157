@@ -39,3 +39,11 @@ func ReporteRecorrido(recorridoDot string) {
 	dot.GraphEvery("Recorrido", "jpg", "DotFile")
 
 }
+
+func ReporteUsuarios(recorridoDot string) {
+	hello := "digraph \n { node[style=\"filled\",fillcolor=\"#8df7ef\",shape=\"record\"] \n"
+	hello += recorridoDot
+	dot.CrearArchivo(hello+"}", "txt")
+	dot.GraphEvery("Usuarios", "jpg", "DotFile")
+
+}

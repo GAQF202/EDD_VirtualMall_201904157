@@ -1,123 +1,47 @@
-digraph G{ 
- node[style="filled",fillcolor="#8df7ef",shape="record"]  VectorNode[label="<0>0|<1>1|<2>2|<3>3|<4>4|<5>5|<6>6|<7>7|<8>8|<9>9|<10>10|<11>11|<12>12|<13>13|<14>14|<15>15|<16>16|<17>17|<18>18|<19>19|<20>20|<21>21|<22>22|<23>23|<24>24|<25>25|<26>26|<27>27|<28>28|<29>29|<30>30|<31>31|<32>32|<33>33|<34>34|<35>35|<36>36|<37>37|<38>38|<39>39|<40>40|<41>41|<42>42|<43>43|<44>44|<45>45|<46>46|<47>47|<48>48|<49>49|<50>50|<51>51|<52>52|<53>53|<54>54|<55>55|<56>56|<57>57|<58>58|<59>59|<60>60|<61>61|<62>62|<63>63|<64>64|<65>65|<66>66|<67>67|<68>68|<69>69|<70>70|<71>71|<72>72|<73>73|<74>74|<75>75|<76>76|<77>77|<78>78|<79>79|<80>80|<81>81|<82>82|<83>83|<84>84|<85>85|<86>86|<87>87|<88>88|<89>89|<90>90|<91>91|<92>92|<93>93|<94>94|<95>95|<96>96|<97>97|<98>98|<99>99"] node1[label="Arguello y Valdivia",fillcolor="white",shape="record",color="pink"]
- node1->node2->node1
+digraph 
+ { node[style="filled",fillcolor="#8df7ef",shape="record"] 
 
- VectorNode:"0" -> node1
- node2[label="Alonzo y Rosado",fillcolor="white",shape="record",color="pink"] node3[label="Alonso, Balderas y Fierro Asociados",fillcolor="white",shape="record",color="pink"]
- VectorNode:"1" -> node3
- node4[label="Arevalo y Villa",fillcolor="white",shape="record",color="pink"]
- VectorNode:"2" -> node4
- node5[label="Alarcón Armas Hermanos",fillcolor="white",shape="record",color="pink"]
- VectorNode:"3" -> node5
- node6[label="Alonso, Balderas y Fierro Asociados",fillcolor="white",shape="record",color="pink"]
- node6->node7->node6
+pagina1234567890116:"1234567890116h0" -> pagina1234567890104
+pagina1234567890116:"1234567890119h1" -> pagina1234567890113
+pagina1234567890116:"0h2" -> pagina1234567890122
+pagina1234567890104:"1234567890104h0" -> pagina1234567890102
+pagina1234567890104:"1234567890107h1" -> pagina1234567890105
+pagina1234567890104:"0h2" -> pagina1234567890108
+pagina1234567890102[label="<1234567890102h0>|<1234567890102>1234567890102\nUsuario\nNombre0\nCorreo0@correo.com\nhola0|<1234567890103h1>|<1234567890103>1234567890103\nUsuario\nNombre1\nCorreo1@correo.com\nhola1|<0h4>|<0>0|<0h4>"]
 
- VectorNode:"6" -> node6
- node7[label="Arevalo y Villa",fillcolor="white",shape="record",color="pink"] node8[label="Arguello y Valdivia",fillcolor="white",shape="record",color="pink"]
- node8->node9->node8
+pagina1234567890105[label="<1234567890105h0>|<1234567890105>1234567890105\nUsuario\nNombre3\nCorreo3@correo.com\nhola3|<1234567890106h1>|<1234567890106>1234567890106\nUsuario\nNombre4\nCorreo4@correo.com\nhola4|<0h4>|<0>0|<0h4>"]
 
- VectorNode:"9" -> node8
- node9[label="Alonzo y Rosado",fillcolor="white",shape="record",color="pink"] node10[label="Arguello y Valdivia",fillcolor="white",shape="record",color="pink"]
- VectorNode:"10" -> node10
- node11[label="Arguello y Valdivia",fillcolor="white",shape="record",color="pink"]
- VectorNode:"16" -> node11
- node12[label="Alonso, Balderas y Fierro Asociados",fillcolor="white",shape="record",color="pink"]
- VectorNode:"18" -> node12
- node13[label="Alonzo y Rosado",fillcolor="white",shape="record",color="pink"]
- VectorNode:"21" -> node13
- node14[label="Alonso, Balderas y Fierro Asociados",fillcolor="white",shape="record",color="pink"]
- VectorNode:"22" -> node14
- node15[label="Arguello y Valdivia",fillcolor="white",shape="record",color="pink"]
- VectorNode:"24" -> node15
- node16[label="Barrientos y Rivera",fillcolor="white",shape="record",color="pink"]
- VectorNode:"25" -> node16
- node17[label="Batista Herrera e Hijos",fillcolor="white",shape="record",color="pink"]
- VectorNode:"26" -> node17
- node18[label="Barragán Hermanos",fillcolor="white",shape="record",color="pink"]
- VectorNode:"27" -> node18
- node19[label="Bravo e Hijos",fillcolor="white",shape="record",color="pink"]
- node19->node20->node19
+pagina1234567890108[label="<1234567890108h0>|<1234567890108>1234567890108\nUsuario\nNombre6\nCorreo6@correo.com\nhola6|<1234567890109h1>|<1234567890109>1234567890109\nUsuario\nNombre7\nCorreo7@correo.com\nhola7|<0h4>|<0>0|<0h4>"]
 
- VectorNode:"29" -> node19
- node20[label="Bernal, Rosado y Puga Asociados",fillcolor="white",shape="record",color="pink"] node21[label="Bravo e Hijos",fillcolor="white",shape="record",color="pink"]
- VectorNode:"31" -> node21
- node22[label="Barrientos y Rivera",fillcolor="white",shape="record",color="pink"]
- VectorNode:"32" -> node22
- node23[label="Barrientos y Rivera",fillcolor="white",shape="record",color="pink"]
- VectorNode:"37" -> node23
- node24[label="Batista Herrera e Hijos",fillcolor="white",shape="record",color="pink"]
- VectorNode:"38" -> node24
- node25[label="Bravo e Hijos",fillcolor="white",shape="record",color="pink"]
- VectorNode:"39" -> node25
- node26[label="Bravo e Hijos",fillcolor="white",shape="record",color="pink"]
- VectorNode:"42" -> node26
- node27[label="Barrientos y Rivera",fillcolor="white",shape="record",color="pink"]
- VectorNode:"44" -> node27
- node28[label="Batista Herrera e Hijos",fillcolor="white",shape="record",color="pink"]
- node28->node29->node28
+pagina1234567890104[label="<1234567890104h0>|<1234567890104>1234567890104\nUsuario\nNombre2\nCorreo2@correo.com\nhola2|<1234567890107h1>|<1234567890107>1234567890107\nUsuario\nNombre5\nCorreo5@correo.com\nhola5|<0h4>|<0>0|<0h4>"]
 
- VectorNode:"47" -> node28
- node29[label="Bernal, Rosado y Puga Asociados",fillcolor="white",shape="record",color="pink"] node30[label="Barrientos y Rivera",fillcolor="white",shape="record",color="pink"]
- VectorNode:"48" -> node30
- node31[label="Bravo e Hijos",fillcolor="white",shape="record",color="pink"]
- VectorNode:"49" -> node31
- node32[label="Correa, Zúñiga y Burgos Asociados",fillcolor="white",shape="record",color="pink"]
- node32->node33->node32
+pagina1234567890113:"1234567890113h0" -> pagina1234567890111
+pagina1234567890113:"1234567890116h1" -> pagina1234567890114
+pagina1234567890113:"0h2" -> pagina1234567890117
+pagina1234567890111[label="<1234567890111h0>|<1234567890111>1234567890111\nUsuario\nNombre9\nCorreo9@correo.com\nhola9|<1234567890112h1>|<1234567890112>1234567890112\nUsuario\nNombre10\nCorreo10@correo.com\nhola10|<0h4>|<0>0|<0h4>"]
 
- VectorNode:"52" -> node32
- node33[label="Cortez y Roybal",fillcolor="white",shape="record",color="pink"] node34[label="Casanova Cepeda Hermanos",fillcolor="white",shape="record",color="pink"]
- VectorNode:"53" -> node34
- node35[label="Correa, Zúñiga y Burgos Asociados",fillcolor="white",shape="record",color="pink"]
- node35->node36->node35
+pagina1234567890114[label="<1234567890114h0>|<1234567890114>1234567890114\nUsuario\nNombre12\nCorreo12@correo.com\nhola12|<1234567890115h1>|<1234567890115>1234567890115\nUsuario\nNombre13\nCorreo13@correo.com\nhola13|<0h4>|<0>0|<0h4>"]
 
- VectorNode:"56" -> node35
- node36[label="Casanova Cepeda Hermanos",fillcolor="white",shape="record",color="pink"]
- node36->node37->node36
- node37[label="Cortez y Roybal",fillcolor="white",shape="record",color="pink"] node38[label="Casanova Cepeda Hermanos",fillcolor="white",shape="record",color="pink"]
- VectorNode:"61" -> node38
- node39[label="Correa, Zúñiga y Burgos Asociados",fillcolor="white",shape="record",color="pink"]
- VectorNode:"62" -> node39
- node40[label="Cervantes y Vázquez",fillcolor="white",shape="record",color="pink"]
- VectorNode:"67" -> node40
- node41[label="Casanova Cepeda Hermanos",fillcolor="white",shape="record",color="pink"]
- node41->node42->node41
+pagina1234567890117[label="<1234567890117h0>|<1234567890117>1234567890117\nUsuario\nNombre15\nCorreo15@correo.com\nhola15|<1234567890118h1>|<1234567890118>1234567890118\nUsuario\nNombre16\nCorreo16@correo.com\nhola16|<0h4>|<0>0|<0h4>"]
 
- VectorNode:"68" -> node41
- node42[label="Cortez y Roybal",fillcolor="white",shape="record",color="pink"] node43[label="Correa, Zúñiga y Burgos Asociados",fillcolor="white",shape="record",color="pink"]
- node43->node44->node43
+pagina1234567890113[label="<1234567890113h0>|<1234567890113>1234567890113\nUsuario\nNombre11\nCorreo11@correo.com\nhola11|<1234567890116h1>|<1234567890116>1234567890116\nUsuario\nNombre14\nCorreo14@correo.com\nhola14|<0h4>|<0>0|<0h4>"]
 
- VectorNode:"69" -> node43
- node44[label="Cortés, Arias y Carrasco Asociados",fillcolor="white",shape="record",color="pink"] node45[label="Correa, Zúñiga y Burgos Asociados",fillcolor="white",shape="record",color="pink"]
- VectorNode:"73" -> node45
- node46[label="Delarosa S.L.",fillcolor="white",shape="record",color="pink"]
- node46->node47->node46
+pagina1234567890122:"1234567890122h0" -> pagina1234567890120
+pagina1234567890122:"1234567890125h1" -> pagina1234567890123
+pagina1234567890122:"1234567890128h2" -> pagina1234567890126
+pagina1234567890122:"1234567890131h3" -> pagina1234567890129
+pagina1234567890122:"0h4" -> pagina1234567890132
+pagina1234567890120[label="<1234567890120h0>|<1234567890120>1234567890120\nUsuario\nNombre18\nCorreo18@correo.com\nhola18|<1234567890121h1>|<1234567890121>1234567890121\nUsuario\nNombre19\nCorreo19@correo.com\nhola19|<0h4>|<0>0|<0h4>"]
 
- VectorNode:"77" -> node46
- node47[label="Delapaz, Valenzuela y Vallejo Asociados",fillcolor="white",shape="record",color="pink"]
- node47->node48->node47
- node48[label="Delapaz Franco e Hijos",fillcolor="white",shape="record",color="pink"]
- node48->node49->node48
- node49[label="Delrío Tapia Hermanos",fillcolor="white",shape="record",color="pink"] node50[label="Delagarza y Cavazos",fillcolor="white",shape="record",color="pink"]
- VectorNode:"78" -> node50
- node51[label="Delapaz, Valenzuela y Vallejo Asociados",fillcolor="white",shape="record",color="pink"]
- VectorNode:"80" -> node51
- node52[label="Delarosa S.L.",fillcolor="white",shape="record",color="pink"]
- node52->node53->node52
+pagina1234567890123[label="<1234567890123h0>|<1234567890123>1234567890123\nUsuario\nNombre21\nCorreo21@correo.com\nhola21|<1234567890124h1>|<1234567890124>1234567890124\nUsuario\nNombre22\nCorreo22@correo.com\nhola22|<0h4>|<0>0|<0h4>"]
 
- VectorNode:"84" -> node52
- node53[label="Delapaz Franco e Hijos",fillcolor="white",shape="record",color="pink"] node54[label="Delarosa S.L.",fillcolor="white",shape="record",color="pink"]
- VectorNode:"89" -> node54
- node55[label="Delagarza y Cavazos",fillcolor="white",shape="record",color="pink"]
- VectorNode:"91" -> node55
- node56[label="Delarosa S.L.",fillcolor="white",shape="record",color="pink"]
- node56->node57->node56
+pagina1234567890126[label="<1234567890126h0>|<1234567890126>1234567890126\nUsuario\nNombre24\nCorreo24@correo.com\nhola24|<1234567890127h1>|<1234567890127>1234567890127\nUsuario\nNombre25\nCorreo25@correo.com\nhola25|<0h4>|<0>0|<0h4>"]
 
- VectorNode:"93" -> node56
- node57[label="Delapaz, Valenzuela y Vallejo Asociados",fillcolor="white",shape="record",color="pink"] node58[label="Delapaz Franco e Hijos",fillcolor="white",shape="record",color="pink"]
- VectorNode:"94" -> node58
- node59[label="Delarosa S.L.",fillcolor="white",shape="record",color="pink"]
- VectorNode:"98" -> node59
- node60[label="Delapaz, Valenzuela y Vallejo Asociados",fillcolor="white",shape="record",color="pink"]
- VectorNode:"99" -> node60
+pagina1234567890129[label="<1234567890129h0>|<1234567890129>1234567890129\nUsuario\nNombre27\nCorreo27@correo.com\nhola27|<1234567890130h1>|<1234567890130>1234567890130\nUsuario\nNombre28\nCorreo28@correo.com\nhola28|<0h4>|<0>0|<0h4>"]
 
- }
+pagina1234567890132[label="<1234567890132h0>|<1234567890132>1234567890132\nUsuario\nNombre30\nCorreo30@correo.com\nhola30|<3007638160101h1>|<3007638160101>3007638160101\nUsuario\nGerson el crack\nsfas@fa.com\n123|<0h4>|<0>0|<0h4>"]
+
+pagina1234567890122[label="<1234567890122h0>|<1234567890122>1234567890122\nUsuario\nNombre20\nCorreo20@correo.com\nhola20|<1234567890125h1>|<1234567890125>1234567890125\nUsuario\nNombre23\nCorreo23@correo.com\nhola23|<1234567890128h2>|<1234567890128>1234567890128\nUsuario\nNombre26\nCorreo26@correo.com\nhola26|<1234567890131h3>|<1234567890131>1234567890131\nUsuario\nNombre29\nCorreo29@correo.com\nhola29|<0h4>|<0>0|<0h4>"]
+
+pagina1234567890116[label="<1234567890116h0>|<1234567890116>1234567890116\nUsuario\nNombre14\nCorreo14@correo.com\nhola14|<1234567890119h1>|<1234567890119>1234567890119\nUsuario\nNombre17\nCorreo17@correo.com\nhola17|<0h4>|<0>0|<0h4>"]
+}

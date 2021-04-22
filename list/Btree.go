@@ -233,41 +233,49 @@ var encontrado Structs.Usuario
 
 func (a BTree) Buscar(key int, tmp *NodoBTree) Structs.Usuario {
 
-	found := false
-	for i := 0; i < tmp.N; i++ {
-		if key == tmp.Key[i].Dpi {
-			found = true
-			encontrado = tmp.Key[i]
+	for j := 0; j < len(tmp.Key); j++ {
+		if tmp.Key[j].Dpi == key {
+			encontrado = tmp.Key[j]
 			break
 		}
 	}
-	if !found {
-		for i := 0; i < tmp.N; i++ {
-			if tmp.Hijo[i] != nil {
-				a.Buscar(key, tmp.Hijo[i])
-			}
+	for j := 0; j < len(tmp.Hijo); j++ {
+		if tmp.Hijo[j] != nil {
+			a.Buscar(key, tmp.Hijo[j])
 		}
 	}
 	return encontrado
 }
 
 var GraficaArbol string = ""
+var GraficaArbolDatosSensibles string = ""
+var GraficaArbolEncriptado string = ""
 var contadorPagina int = 0
 
 func VerElementos(n *NodoBTree) {
 	dot := "\npagina" + strconv.Itoa(n.Key[0].Dpi) + "[label=\""
+	dotS := "\npagina" + strconv.Itoa(n.Key[0].Dpi) + "[label=\""
+	//dotEncriptado := "\npagina" + strconv.Itoa(n.Key[0].Dpi) + "[label=\""
+
 	contadorPagina++
 	for j := 0; j < len(n.Key); j++ {
 		if j < len(n.Key)-1 {
 			if n.Key[j].Dpi != 0 {
 				dot += "<" + strconv.Itoa(n.Key[j].Dpi) + "h" + strconv.Itoa(j) + ">" + "|"
-				dot += "<" + strconv.Itoa(n.Key[j].Dpi) + ">" + strconv.Itoa(n.Key[j].Dpi) + "|"
+				dot += "<" + strconv.Itoa(n.Key[j].Dpi) + ">" + strconv.Itoa(n.Key[j].Dpi) + "\\n" + n.Key[j].Cuenta + "\\n" + n.Key[j].Nombre + "\\n" + n.Key[j].Correo + "\\n" + n.Key[j].Password + "|"
+
+				dotS += "<" + strconv.Itoa(n.Key[j].Dpi) + "h" + strconv.Itoa(j) + ">" + "|"
+				dotS += "<" + strconv.Itoa(n.Key[j].Dpi) + ">" + Encrypt([]byte("123"), strconv.Itoa(n.Key[j].Dpi)) + "\\n" + n.Key[j].Cuenta + "\\n" + n.Key[j].Nombre + "\\n" + Encrypt([]byte("123"), n.Key[j].Correo) + "\\n" + Encrypt([]byte("123"), n.Key[j].Password) + "|"
 				//dot += "<" + strconv.Itoa(n.Key[j].Dpi) + "h" + strconv.Itoa(j) + ">" + "|"
 			}
 		} else {
 			dot += "<" + strconv.Itoa(n.Key[j].Dpi) + "h" + strconv.Itoa(j) + ">" + "|"
 			dot += "<" + strconv.Itoa(n.Key[j].Dpi) + ">" + strconv.Itoa(n.Key[j].Dpi) + "|"
 			dot += "<" + strconv.Itoa(n.Key[j].Dpi) + "h" + strconv.Itoa(j) + ">"
+
+			dotS += "<" + strconv.Itoa(n.Key[j].Dpi) + "h" + strconv.Itoa(j) + ">" + "|"
+			dotS += "<" + strconv.Itoa(n.Key[j].Dpi) + ">" + strconv.Itoa(n.Key[j].Dpi) + "|"
+			dotS += "<" + strconv.Itoa(n.Key[j].Dpi) + "h" + strconv.Itoa(j) + ">"
 		}
 		if n.Hijo[j] != nil {
 			GraficaArbol += "\npagina" + strconv.Itoa(n.Key[0].Dpi) + ":\"" + strconv.Itoa(n.Key[j].Dpi) + "h" + strconv.Itoa(j) + "\" -> pagina" + strconv.Itoa(n.Hijo[j].Key[0].Dpi)
@@ -281,6 +289,7 @@ func VerElementos(n *NodoBTree) {
 	}
 	//fmt.Println(dot + "\"]")
 	GraficaArbol += dot + "\"]\n"
+	GraficaArbolDatosSensibles += dotS + "\"]\n"
 }
 
 func ordenarPagina(paginaDesordenada *NodoBTree) {

@@ -57,8 +57,11 @@ func InsertInBTree(cuentas acount) {
 
 	//SE GRAFICA EL ARBOL A PARTIR DE LA RAIZ
 	list.GraficaArbol = ""
+	list.GraficaArbolDatosSensibles = ""
 	list.VerElementos(ArbolDeUsuariosGlobal.Root)
-	fmt.Println(list.GraficaArbol)
+	//fmt.Println(list.GraficaArbol)
+	ReporteUsuarios(list.GraficaArbol)
+	//fmt.Println(list.GraficaArbolDatosSensibles)
 	//fmt.Println(ArbolDeUsuariosGlobal.Root)
 	//SE PASA EL ARBOL LOCAL A GLOBAL
 	//ArbolDeUsuariosGlobal = *ArbolDeUsuarios
@@ -81,7 +84,8 @@ func LoadAcount(w http.ResponseWriter, r *http.Request) {
 	//SE IMPRIME EL ARBOL A PARTIR DE LA RAIZ
 	list.GraficaArbol = ""
 	list.VerElementos(ArbolDeUsuariosGlobal.Root)
-	fmt.Println(list.GraficaArbol)
+	ReporteUsuarios(list.GraficaArbol)
+	//fmt.Println(list.GraficaArbol)
 }
 
 type getUser struct {
