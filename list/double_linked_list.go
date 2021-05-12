@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/GAQF202/servidor-rest/Structs"
+	"github.com/GAQF202/servidor-rest/hashes"
 )
 
 //STRUCT PARA TIENDA
@@ -21,6 +22,7 @@ type Nodo struct {
 	siguiente, anterior *Nodo
 	tienda              Store
 	Inventario          AVL
+	Comentarios         hashes.HashTable
 }
 
 type Lista struct {
@@ -58,6 +60,7 @@ func Imprimir(lista *Lista) {
 
 func Insertar(tienda *Store, lista *Lista) {
 	var nuevo *Nodo = NuevoNodo(*tienda)
+	nuevo.Comentarios = *hashes.NewHashTable(7)
 
 	if lista.primero == nil {
 		lista.primero = nuevo
@@ -101,6 +104,34 @@ func Get_store_node(name string, calification int, list *Lista, product Structs.
 		aux = aux.siguiente
 	}
 
+}
+
+//METODO PARA GUARDAR COMENTARIOS
+func GuardarComentarios(name string, calification int, list *Lista, insertar Structs.GetComent, comment hashes.Comentario) {
+	aux := list.primero
+	//fmt.Println("Nombre", name)
+	//fmt.Println("calificacion", calification)
+	for aux != nil {
+		if aux.tienda.Nombre == name && aux.tienda.Calificacion == calification {
+			aux.Comentarios.Insertar(insertar.DPI, insertar.DPI, comment)
+
+		}
+		aux = aux.siguiente
+	}
+}
+
+//METODO PARA OBTENER COMENTARIOS
+func ObtenerComentarios(name string, calification int, list *Lista) hashes.HashTable {
+	aux := list.primero
+	var res hashes.HashTable
+
+	for aux != nil {
+		if aux.tienda.Nombre == name && aux.tienda.Calificacion == calification {
+			res = aux.Comentarios
+		}
+		aux = aux.siguiente
+	}
+	return res
 }
 
 func VerNodos(list *Lista) {

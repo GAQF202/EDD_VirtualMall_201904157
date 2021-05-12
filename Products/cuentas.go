@@ -8,6 +8,7 @@ import (
 	"strconv"
 
 	"github.com/GAQF202/servidor-rest/Structs"
+	"github.com/GAQF202/servidor-rest/hashes"
 	"github.com/GAQF202/servidor-rest/list"
 )
 
@@ -28,6 +29,13 @@ type user struct {
 	Password string `json:"Password"`
 	Cuenta   string `json:"Cuenta"`
 }
+
+type UsuarioActual struct {
+	Usuario string
+	DPI     int
+}
+
+var UsuarioGlobalActual UsuarioActual
 
 //VARIABLE GLOBAL PARA GUARDAR TODOS LOS USUARIOS
 var usuarios acount
@@ -93,8 +101,23 @@ type getUser struct {
 	Password string `json:"Password"`
 }
 
+type GetComent struct {
+	Usuario    string `json:"Usuario"`
+	Dpi        string `json:"Dpi"`
+	Comentario string `json:"Comentario"`
+}
+
 var usuarioEncontrado getUser
 
+//FUNCION PARA OBTENER EL USUARIO LOGUEADO ACTUAL
+func GetUsuarioActual(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	//SE MANDA EL JSON AL BODY
+	json.NewEncoder(w).Encode(UsuarioGlobalActual)
+	//fmt.Println(UsuarioGlobalActual)
+}
+
+//FUNCION PARA OBTENER USUARIOS
 func GetUsuario(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	reqBody, err := ioutil.ReadAll(r.Body)
@@ -115,6 +138,8 @@ func GetUsuario(w http.ResponseWriter, r *http.Request) {
 	if encontrado.Dpi != 0 {
 		if usuarioEncontrado.Password == encontrado.Password {
 			json.NewEncoder(w).Encode(encontrado)
+
+			UsuarioGlobalActual = UsuarioActual{encontrado.Nombre, encontrado.Dpi}
 		} else {
 			json.NewEncoder(w).Encode("Contraseña incorrecta")
 		}
@@ -123,4 +148,41 @@ func GetUsuario(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode("Usuario no encontrado")
 	}
 
+}
+
+//VARIABLE PARA CUARDAR EL COMENTARIO
+var comentario Structs.GetComent
+
+//GUARDA LA POSICION DE LA TIENDA ACTUAL
+var PosicionTiendaActual list.InventoryType
+var PosicionVectorActual int
+
+//FUNCION PARA ENVIO DE COMENTARIOS
+func SendComment(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	reqBody, err := ioutil.ReadAll(r.Body)
+
+	json.Unmarshal([]byte(reqBody), &comentario)
+
+	if err != nil {
+		fmt.Fprintf(w, "Insert a Valid Task")
+	}
+
+	w.Header().Set("Content-type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	fmt.Println(comentario)
+	//fmt.Println("Posicion", PosicionTiendaActual)
+	comentarioActual := hashes.Comentario{Usuario: comentario.Usuario, Comentario: comentario.Comentario}
+	list.GuardarComentarios(PosicionTiendaActual.Tienda, PosicionTiendaActual.Calificacion, list.GlobalVector[PosicionVectorActual], comentario, comentarioActual)
+}
+
+//FUNCION PARA OBTENCION DE COMENTARIOS
+func GetComments(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	v := list.ObtenerComentarios(PosicionTiendaActual.Tienda, PosicionTiendaActual.Calificacion, list.GlobalVector[PosicionVectorActual])
+	res := v.GetElements()
+	json.NewEncoder(w).Encode(res)
+	//fmt.Println(res)
 }

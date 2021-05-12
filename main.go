@@ -353,6 +353,12 @@ func main() {
 	router.HandleFunc("/usuario", Products.LoadAcount).Methods(("POST"))
 	//RUTA PARA BUSQUEDA DE USUARIO
 	router.HandleFunc("/getUsuario", Products.GetUsuario).Methods(("POST"))
+	//RUTA PARA BUSQUEDA DEL USUARIO LOGEADO ACTUAL
+	router.HandleFunc("/getUsuarioActual", Products.GetUsuarioActual).Methods(("GET"))
+	//RUTA PARA ENVIO DE COMENTARIO
+	router.HandleFunc("/sendComent", Products.SendComment).Methods(("POST"))
+	//RUTA PARA OBTENER LOS COMENTARIOS ALMACENADOS EN LA TABLA HASH
+	router.HandleFunc("/sendComent", Products.GetComments).Methods(("GET"))
 
 	router.HandleFunc("/recorrido", recorrido).Methods(("POST"))
 

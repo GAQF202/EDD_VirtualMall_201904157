@@ -109,6 +109,18 @@ type Rec struct {
 	Entrega              string `json:"Entrega"`
 }
 
+type GetComent struct {
+	Usuario    string `json:"Usuario"`
+	DPI        int    `json:"DPI"`
+	Comentario string `json:"Comentario"`
+}
+
+//
+/*type Comment struct {
+	Usuario    string
+	Comentario string
+}*/
+
 /*type Year struct {
 	Year int
 }

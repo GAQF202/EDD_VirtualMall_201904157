@@ -39,6 +39,7 @@ func Tienda(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal([]byte(reqBody), &tienda)
 
 	res := Get_Producto(tienda)
+	PosicionTiendaActual = res
 	//JSON DE RESPUESTA
 	json.NewEncoder(w).Encode(res)
 }
@@ -47,8 +48,10 @@ type TiendaEcontrada struct {
 	Productos []struct{}
 }
 
+//OBTIENE LOS PRODUCTOS DE LA TIENDA EN ESPECIFICO
 func Get_Producto(tienda Buscar_tienda) list.InventoryType {
 	Position := list.Get_position(tienda.Departamento, tienda.Nombre, tienda.Calificacion)
+	PosicionVectorActual = Position
 	return list.JsonInventory(tienda.Nombre, tienda.Calificacion, list.GlobalVector[Position], tienda.Departamento)
 }
 

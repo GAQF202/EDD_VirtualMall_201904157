@@ -4,132 +4,61 @@
    "Indice": "A",
    "Departamentos": [
     {
-     "Nombre": "Otros",
+     "Nombre": "Enchufes",
      "Tiendas": [
       {
-       "Nombre": "Arguello y Valdivia",
-       "Descripcion": "Quasi nulla corporis eos distinctio et odio.",
-       "Contacto": "932025470",
+       "Nombre": "Almonte y Flórez",
+       "Descripcion": "Aut et voluptates dolores sed eos blanditiis molestiae.",
+       "Contacto": "941 598 722",
        "Calificacion": 1,
+       "Logo": "http://placeimg.com/640/480/nature"
+      },
+      {
+       "Nombre": "Alfaro, Muñiz y Castañeda Asociados",
+       "Descripcion": "Minus ut iste dolor maiores fuga voluptatum.",
+       "Contacto": "952596620",
+       "Calificacion": 2,
        "Logo": "http://placeimg.com/640/480/sports"
       },
       {
-       "Nombre": "Alonzo y Rosado",
-       "Descripcion": "Quia quasi officiis illo eveniet.",
-       "Contacto": "981-600-296",
-       "Calificacion": 1,
-       "Logo": "http://placeimg.com/640/480/technics"
-      },
-      {
-       "Nombre": "Alonso, Balderas y Fierro Asociados",
-       "Descripcion": "Corporis odio vel non omnis.",
-       "Contacto": "956656291",
+       "Nombre": "Alvarez Abeyta S.A.",
+       "Descripcion": "Impedit officiis provident quaerat nobis.",
+       "Contacto": "915-601-420",
        "Calificacion": 2,
-       "Logo": "http://placeimg.com/640/480/nightlife"
+       "Logo": "http://placeimg.com/640/480/abstract"
       },
       {
-       "Nombre": "Arevalo y Villa",
-       "Descripcion": "Et molestiae delectus minus cumque et.",
-       "Contacto": "901 236 898",
+       "Nombre": "Almaraz, Ontiveros y Tijerina Asociados",
+       "Descripcion": "Ea ad non eaque suscipit explicabo et odit aliquam.",
+       "Contacto": "928536046",
        "Calificacion": 3,
-       "Logo": "http://placeimg.com/640/480/cats"
-      },
-      {
-       "Nombre": "Alarcón Armas Hermanos",
-       "Descripcion": "Ipsam aperiam sed.",
-       "Contacto": "909-412-716",
-       "Calificacion": 4,
-       "Logo": "http://placeimg.com/640/480/nightlife"
-      }
-     ]
-    },
-    {
-     "Nombre": "Electrónicos para autos",
-     "Tiendas": [
-      {
-       "Nombre": "Alonso, Balderas y Fierro Asociados",
-       "Descripcion": "Ipsum sint et est fuga.",
-       "Contacto": "946605310",
-       "Calificacion": 2,
-       "Logo": "http://placeimg.com/640/480/business"
-      },
-      {
-       "Nombre": "Arevalo y Villa",
-       "Descripcion": "Perspiciatis eum aut sunt voluptatibus voluptatibus dolores illo dolorem qui.",
-       "Contacto": "928-158-931",
-       "Calificacion": 2,
-       "Logo": "http://placeimg.com/640/480/animals"
-      },
-      {
-       "Nombre": "Arguello y Valdivia",
-       "Descripcion": "Ab sed voluptatem recusandae rerum est aut.",
-       "Contacto": "949 448 148",
-       "Calificacion": 5,
-       "Logo": "http://placeimg.com/640/480/food"
-      },
-      {
-       "Nombre": "Alonzo y Rosado",
-       "Descripcion": "Molestias est nam rerum veritatis distinctio natus officia.",
-       "Contacto": "977857966",
-       "Calificacion": 5,
        "Logo": "http://placeimg.com/640/480/fashion"
       }
      ]
     },
     {
-     "Nombre": "Vinilos",
+     "Nombre": "Calefaccion y Refrigeracion",
      "Tiendas": [
       {
-       "Nombre": "Arguello y Valdivia",
-       "Descripcion": "Velit nihil alias dolor.",
-       "Contacto": "985.870.049",
+       "Nombre": "Alfaro, Muñiz y Castañeda Asociados",
+       "Descripcion": "Rerum corrupti harum.",
+       "Contacto": "962 700 769",
        "Calificacion": 1,
-       "Logo": "http://placeimg.com/640/480/city"
-      }
-     ]
-    },
-    {
-     "Nombre": "Consolas de videojuegos",
-     "Tiendas": [
-      {
-       "Nombre": "Arguello y Valdivia",
-       "Descripcion": "Consequatur quis non ut nobis dolore eius omnis dolorem repellendus.",
-       "Contacto": "978.479.520",
-       "Calificacion": 2,
-       "Logo": "http://placeimg.com/640/480/sports"
-      },
-      {
-       "Nombre": "Alonso, Balderas y Fierro Asociados",
-       "Descripcion": "Quisquam cum et voluptatum.",
-       "Contacto": "914.538.423",
-       "Calificacion": 4,
-       "Logo": "http://placeimg.com/640/480/nightlife"
-      }
-     ]
-    },
-    {
-     "Nombre": "Arte y Artesanias",
-     "Tiendas": [
-      {
-       "Nombre": "Alonzo y Rosado",
-       "Descripcion": "Dolorem nemo ut nemo.",
-       "Contacto": "922 006 777",
-       "Calificacion": 2,
-       "Logo": "http://placeimg.com/640/480/sports"
-      },
-      {
-       "Nombre": "Alonso, Balderas y Fierro Asociados",
-       "Descripcion": "Error qui mollitia voluptate delectus non.",
-       "Contacto": "969.687.141",
-       "Calificacion": 3,
        "Logo": "http://placeimg.com/640/480/abstract"
       },
       {
-       "Nombre": "Arguello y Valdivia",
-       "Descripcion": "Totam repudiandae laborum expedita dolores quasi.",
-       "Contacto": "976 234 872",
-       "Calificacion": 5,
-       "Logo": "http://placeimg.com/640/480/people"
+       "Nombre": "Almaraz, Ontiveros y Tijerina Asociados",
+       "Descripcion": "Hic rem corporis voluptates praesentium consequatur eaque maxime.",
+       "Contacto": "918123080",
+       "Calificacion": 2,
+       "Logo": "http://placeimg.com/640/480/animals"
+      },
+      {
+       "Nombre": "Alvarez Abeyta S.A.",
+       "Descripcion": "Quasi libero minima eaque nulla eum exercitationem omnis cumque.",
+       "Contacto": "960.105.386",
+       "Calificacion": 2,
+       "Logo": "http://placeimg.com/640/480/fashion"
       }
      ]
     }
@@ -139,402 +68,33 @@
    "Indice": "B",
    "Departamentos": [
     {
-     "Nombre": "Otros",
+     "Nombre": "Enchufes",
      "Tiendas": [
       {
-       "Nombre": "Barrientos y Rivera",
-       "Descripcion": "Consectetur dolorem temporibus.",
-       "Contacto": "986749180",
-       "Calificacion": 1,
-       "Logo": "http://placeimg.com/640/480/business"
-      },
-      {
-       "Nombre": "Batista Herrera e Hijos",
-       "Descripcion": "Quis quam necessitatibus.",
-       "Contacto": "980829564",
-       "Calificacion": 2,
-       "Logo": "http://placeimg.com/640/480/abstract"
-      },
-      {
-       "Nombre": "Barragán Hermanos",
-       "Descripcion": "Qui nihil quo et.",
-       "Contacto": "962-604-328",
+       "Nombre": "Barrios y Saldivar",
+       "Descripcion": "Laudantium repellat temporibus.",
+       "Contacto": "904.530.115",
        "Calificacion": 3,
-       "Logo": "http://placeimg.com/640/480/sports"
-      },
-      {
-       "Nombre": "Bravo e Hijos",
-       "Descripcion": "Quia et enim incidunt sint consequuntur ut temporibus.",
-       "Contacto": "939.454.678",
-       "Calificacion": 5,
        "Logo": "http://placeimg.com/640/480/city"
       },
       {
-       "Nombre": "Bernal, Rosado y Puga Asociados",
-       "Descripcion": "Molestias quia unde et voluptatem quo atque nemo nostrum occaecati.",
-       "Contacto": "910761306",
+       "Nombre": "Baeza Armas Hermanos",
+       "Descripcion": "Asperiores tenetur autem recusandae cum dolor.",
+       "Contacto": "906 112 223",
        "Calificacion": 5,
-       "Logo": "http://placeimg.com/640/480/abstract"
-      }
-     ]
-    },
-    {
-     "Nombre": "Electrónicos para autos",
-     "Tiendas": [
-      {
-       "Nombre": "Bravo e Hijos",
-       "Descripcion": "Est alias sint fugiat tempora fugit sit exercitationem facere.",
-       "Contacto": "909-880-949",
-       "Calificacion": 2,
-       "Logo": "http://placeimg.com/640/480/people"
-      },
-      {
-       "Nombre": "Barrientos y Rivera",
-       "Descripcion": "Doloribus quia et consequatur recusandae animi culpa excepturi.",
-       "Contacto": "989 075 231",
-       "Calificacion": 3,
-       "Logo": "http://placeimg.com/640/480/cats"
-      }
-     ]
-    },
-    {
-     "Nombre": "Vinilos",
-     "Tiendas": [
-      {
-       "Nombre": "Barrientos y Rivera",
-       "Descripcion": "Maxime animi vel nihil doloremque quia voluptatibus fugit enim.",
-       "Contacto": "957 027 420",
-       "Calificacion": 3,
-       "Logo": "http://placeimg.com/640/480/nature"
-      },
-      {
-       "Nombre": "Batista Herrera e Hijos",
-       "Descripcion": "Minus doloremque et dolores officia.",
-       "Contacto": "934078223",
-       "Calificacion": 4,
-       "Logo": "http://placeimg.com/640/480/technics"
-      },
-      {
-       "Nombre": "Bravo e Hijos",
-       "Descripcion": "Fugit iste in qui qui assumenda iste.",
-       "Contacto": "936 494 198",
-       "Calificacion": 5,
-       "Logo": "http://placeimg.com/640/480/transport"
-      }
-     ]
-    },
-    {
-     "Nombre": "Consolas de videojuegos",
-     "Tiendas": [
-      {
-       "Nombre": "Bravo e Hijos",
-       "Descripcion": "Qui et dolores quod quis iste quia.",
-       "Contacto": "956782046",
-       "Calificacion": 3,
-       "Logo": "http://placeimg.com/640/480/abstract"
-      },
-      {
-       "Nombre": "Barrientos y Rivera",
-       "Descripcion": "Sit eaque impedit dolores delectus perspiciatis et.",
-       "Contacto": "917-385-851",
-       "Calificacion": 5,
-       "Logo": "http://placeimg.com/640/480/animals"
-      }
-     ]
-    },
-    {
-     "Nombre": "Arte y Artesanias",
-     "Tiendas": [
-      {
-       "Nombre": "Batista Herrera e Hijos",
-       "Descripcion": "Non et rem dolor sit dolor quibusdam.",
-       "Contacto": "925.379.805",
-       "Calificacion": 3,
-       "Logo": "http://placeimg.com/640/480/business"
-      },
-      {
-       "Nombre": "Bernal, Rosado y Puga Asociados",
-       "Descripcion": "Saepe officia dolorum qui corrupti aut.",
-       "Contacto": "951-861-407",
-       "Calificacion": 3,
-       "Logo": "http://placeimg.com/640/480/animals"
-      },
-      {
-       "Nombre": "Barrientos y Rivera",
-       "Descripcion": "Voluptates rerum quae ullam autem quam aut iure incidunt.",
-       "Contacto": "987.229.237",
-       "Calificacion": 4,
-       "Logo": "http://placeimg.com/640/480/cats"
-      },
-      {
-       "Nombre": "Bravo e Hijos",
-       "Descripcion": "Numquam quod magnam qui in sint.",
-       "Contacto": "943.026.384",
-       "Calificacion": 5,
-       "Logo": "http://placeimg.com/640/480/cats"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "Indice": "C",
-   "Departamentos": [
-    {
-     "Nombre": "Otros",
-     "Tiendas": [
-      {
-       "Nombre": "Correa, Zúñiga y Burgos Asociados",
-       "Descripcion": "Sunt id quibusdam autem totam.",
-       "Contacto": "964.258.895",
-       "Calificacion": 3,
-       "Logo": "http://placeimg.com/640/480/business"
-      },
-      {
-       "Nombre": "Cortez y Roybal",
-       "Descripcion": "Ratione doloribus tempora iste fugit quod.",
-       "Contacto": "916 321 578",
-       "Calificacion": 3,
-       "Logo": "http://placeimg.com/640/480/animals"
-      },
-      {
-       "Nombre": "Casanova Cepeda Hermanos",
-       "Descripcion": "Inventore veritatis autem ea qui voluptate aliquid.",
-       "Contacto": "980.408.168",
-       "Calificacion": 4,
        "Logo": "http://placeimg.com/640/480/people"
       }
      ]
     },
     {
-     "Nombre": "Electrónicos para autos",
+     "Nombre": "Calefaccion y Refrigeracion",
      "Tiendas": [
       {
-       "Nombre": "Correa, Zúñiga y Burgos Asociados",
-       "Descripcion": "Corporis consequuntur nulla aut a voluptas enim eligendi.",
-       "Contacto": "924-490-195",
+       "Nombre": "Barrios y Saldivar",
+       "Descripcion": "Commodi nobis esse.",
+       "Contacto": "977 084 127",
        "Calificacion": 2,
-       "Logo": "http://placeimg.com/640/480/cats"
-      },
-      {
-       "Nombre": "Casanova Cepeda Hermanos",
-       "Descripcion": "Velit sit omnis.",
-       "Contacto": "968136572",
-       "Calificacion": 2,
-       "Logo": "http://placeimg.com/640/480/animals"
-      },
-      {
-       "Nombre": "Cortez y Roybal",
-       "Descripcion": "Possimus ducimus alias ut nihil id error porro voluptate.",
-       "Contacto": "925 375 950",
-       "Calificacion": 2,
-       "Logo": "http://placeimg.com/640/480/food"
-      }
-     ]
-    },
-    {
-     "Nombre": "Vinilos",
-     "Tiendas": [
-      {
-       "Nombre": "Casanova Cepeda Hermanos",
-       "Descripcion": "Perferendis dolorem incidunt autem dicta voluptates soluta voluptas dolores.",
-       "Contacto": "985225031",
-       "Calificacion": 2,
-       "Logo": "http://placeimg.com/640/480/sports"
-      },
-      {
-       "Nombre": "Correa, Zúñiga y Burgos Asociados",
-       "Descripcion": "Rem voluptatem nemo.",
-       "Contacto": "901 044 535",
-       "Calificacion": 3,
-       "Logo": "http://placeimg.com/640/480/people"
-      }
-     ]
-    },
-    {
-     "Nombre": "Consolas de videojuegos",
-     "Tiendas": [
-      {
-       "Nombre": "Cervantes y Vázquez",
-       "Descripcion": "Eos architecto aut expedita a eos dignissimos ut.",
-       "Contacto": "966.062.379",
-       "Calificacion": 3,
-       "Logo": "http://placeimg.com/640/480/nightlife"
-      },
-      {
-       "Nombre": "Casanova Cepeda Hermanos",
-       "Descripcion": "Sit sed quibusdam labore veniam.",
-       "Contacto": "939203916",
-       "Calificacion": 4,
-       "Logo": "http://placeimg.com/640/480/city"
-      },
-      {
-       "Nombre": "Cortez y Roybal",
-       "Descripcion": "Quae itaque ipsam debitis id vel dignissimos.",
-       "Contacto": "937 321 312",
-       "Calificacion": 4,
-       "Logo": "http://placeimg.com/640/480/sports"
-      },
-      {
-       "Nombre": "Correa, Zúñiga y Burgos Asociados",
-       "Descripcion": "Quis ipsam velit atque.",
-       "Contacto": "973-382-696",
-       "Calificacion": 5,
-       "Logo": "http://placeimg.com/640/480/people"
-      },
-      {
-       "Nombre": "Cortés, Arias y Carrasco Asociados",
-       "Descripcion": "Iure esse eaque quam harum voluptatem ut voluptatem.",
-       "Contacto": "924-160-629",
-       "Calificacion": 5,
-       "Logo": "http://placeimg.com/640/480/city"
-      }
-     ]
-    },
-    {
-     "Nombre": "Arte y Artesanias",
-     "Tiendas": [
-      {
-       "Nombre": "Correa, Zúñiga y Burgos Asociados",
-       "Descripcion": "Aliquam repellat iusto ratione similique velit tempora amet.",
-       "Contacto": "936 297 039",
-       "Calificacion": 4,
-       "Logo": "http://placeimg.com/640/480/technics"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "Indice": "D",
-   "Departamentos": [
-    {
-     "Nombre": "Otros",
-     "Tiendas": [
-      {
-       "Nombre": "Delarosa S.L.",
-       "Descripcion": "Et et aliquam enim eum quam.",
-       "Contacto": "912-401-439",
-       "Calificacion": 3,
-       "Logo": "http://placeimg.com/640/480/city"
-      },
-      {
-       "Nombre": "Delapaz, Valenzuela y Vallejo Asociados",
-       "Descripcion": "Aspernatur officia est enim quidem itaque rerum non explicabo dolorum.",
-       "Contacto": "950514717",
-       "Calificacion": 3,
        "Logo": "http://placeimg.com/640/480/fashion"
-      },
-      {
-       "Nombre": "Delapaz Franco e Hijos",
-       "Descripcion": "Sapiente non porro et sit non.",
-       "Contacto": "963854899",
-       "Calificacion": 3,
-       "Logo": "http://placeimg.com/640/480/business"
-      },
-      {
-       "Nombre": "Delrío Tapia Hermanos",
-       "Descripcion": "Nisi at quia voluptates.",
-       "Contacto": "999 366 335",
-       "Calificacion": 3,
-       "Logo": "http://placeimg.com/640/480/technics"
-      },
-      {
-       "Nombre": "Delagarza y Cavazos",
-       "Descripcion": "Fugiat dicta accusamus quia et mollitia.",
-       "Contacto": "912-928-735",
-       "Calificacion": 4,
-       "Logo": "http://placeimg.com/640/480/city"
-      }
-     ]
-    },
-    {
-     "Nombre": "Electrónicos para autos",
-     "Tiendas": [
-      {
-       "Nombre": "Delapaz, Valenzuela y Vallejo Asociados",
-       "Descripcion": "Quia deleniti id sit excepturi et inventore eum.",
-       "Contacto": "996-236-358",
-       "Calificacion": 1,
-       "Logo": "http://placeimg.com/640/480/sports"
-      },
-      {
-       "Nombre": "Delarosa S.L.",
-       "Descripcion": "Ea omnis itaque expedita atque distinctio rerum.",
-       "Contacto": "974-370-492",
-       "Calificacion": 5,
-       "Logo": "http://placeimg.com/640/480/food"
-      },
-      {
-       "Nombre": "Delapaz Franco e Hijos",
-       "Descripcion": "Qui rerum mollitia autem ut modi esse facilis.",
-       "Contacto": "982 613 840",
-       "Calificacion": 5,
-       "Logo": "http://placeimg.com/640/480/people"
-      }
-     ]
-    },
-    {
-     "Nombre": "Vinilos",
-     "Tiendas": [
-      {
-       "Nombre": "Delarosa S.L.",
-       "Descripcion": "Quas aut aperiam odit nihil eos.",
-       "Contacto": "937.656.740",
-       "Calificacion": 5,
-       "Logo": "http://placeimg.com/640/480/food"
-      }
-     ]
-    },
-    {
-     "Nombre": "Consolas de videojuegos",
-     "Tiendas": [
-      {
-       "Nombre": "Delagarza y Cavazos",
-       "Descripcion": "Ut nulla et delectus nemo.",
-       "Contacto": "978 953 421",
-       "Calificacion": 2,
-       "Logo": "http://placeimg.com/640/480/business"
-      },
-      {
-       "Nombre": "Delarosa S.L.",
-       "Descripcion": "Sint quam quia corporis.",
-       "Contacto": "911 900 134",
-       "Calificacion": 4,
-       "Logo": "http://placeimg.com/640/480/business"
-      },
-      {
-       "Nombre": "Delapaz, Valenzuela y Vallejo Asociados",
-       "Descripcion": "Quam molestiae quae saepe dolores delectus.",
-       "Contacto": "910930330",
-       "Calificacion": 4,
-       "Logo": "http://placeimg.com/640/480/business"
-      },
-      {
-       "Nombre": "Delapaz Franco e Hijos",
-       "Descripcion": "Explicabo eum iure ut ut consequuntur labore nihil et necessitatibus.",
-       "Contacto": "964-895-470",
-       "Calificacion": 5,
-       "Logo": "http://placeimg.com/640/480/nightlife"
-      }
-     ]
-    },
-    {
-     "Nombre": "Arte y Artesanias",
-     "Tiendas": [
-      {
-       "Nombre": "Delarosa S.L.",
-       "Descripcion": "Iste dolor beatae hic dicta.",
-       "Contacto": "907 985 538",
-       "Calificacion": 4,
-       "Logo": "http://placeimg.com/640/480/technics"
-      },
-      {
-       "Nombre": "Delapaz, Valenzuela y Vallejo Asociados",
-       "Descripcion": "Dolorem molestiae libero quisquam consequatur qui est est vel.",
-       "Contacto": "997-505-371",
-       "Calificacion": 5,
-       "Logo": "http://placeimg.com/640/480/technics"
       }
      ]
     }
