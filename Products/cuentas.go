@@ -8,6 +8,8 @@ import (
 	"strconv"
 
 	"github.com/GAQF202/servidor-rest/Structs"
+	"github.com/GAQF202/servidor-rest/dijkstra"
+	"github.com/GAQF202/servidor-rest/dot"
 	"github.com/GAQF202/servidor-rest/hashes"
 	"github.com/GAQF202/servidor-rest/list"
 )
@@ -56,12 +58,17 @@ func LoadAcounts(w http.ResponseWriter, r *http.Request) {
 var ArbolDeUsuariosGlobal = list.NewBTree(5)
 
 func InsertInBTree(cuentas acount) {
-
+	var hashUsuarios []dijkstra.Hashable
 	for i := 0; i < len(cuentas.Usuarios); i++ {
 		cuentaActual := Structs.Usuario{cuentas.Usuarios[i].Dpi, cuentas.Usuarios[i].Nombre, cuentas.Usuarios[i].Correo, cuentas.Usuarios[i].Password, cuentas.Usuarios[i].Cuenta}
+		hashUsuarios = append(hashUsuarios, dijkstra.Block(cuentaActual.Nombre+"\\n"+cuentaActual.Correo+"\\n"+cuentaActual.Cuenta+"\\n"+strconv.Itoa(cuentaActual.Dpi)))
 		//SE INSERTAN LOS USUARIOS EN ARBOL LOCAL
 		ArbolDeUsuariosGlobal.Insert(cuentaActual)
 	}
+	dijkstra.PrintTree(dijkstra.BuildTree(hashUsuarios)[0].(dijkstra.Node))
+	dot.CrearArchivoEvery(dijkstra.DotMerkleTree+"}", "txt", "DotAnios")
+	dot.GraphEvery("MerkleUsuarios", "jpg", "DotAnios")
+	dijkstra.DotMerkleTree = "digraph { node [shape=box, style=\"filled\", fillcolor=\"#61e665\"];"
 
 	//SE GRAFICA EL ARBOL A PARTIR DE LA RAIZ
 	list.GraficaArbol = ""

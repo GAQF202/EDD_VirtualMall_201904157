@@ -10,6 +10,7 @@ import (
 
 	"github.com/GAQF202/servidor-rest/Products"
 	"github.com/GAQF202/servidor-rest/Structs"
+	"github.com/GAQF202/servidor-rest/dijkstra"
 	"github.com/GAQF202/servidor-rest/dot"
 	"github.com/GAQF202/servidor-rest/list"
 
@@ -24,6 +25,7 @@ func Linear(doc Mytype) {
 	first_dimention_size := len(doc.Datos)
 	second_dimention_size := len(doc.Datos[0].Departamentos)
 	var position int
+	var hashTiendas []dijkstra.Hashable
 
 	for i := 0; i <= first_dimention_size-1; i++ {
 		for j := 0; j <= second_dimention_size-1; j++ {
@@ -39,10 +41,16 @@ func Linear(doc Mytype) {
 					MyStore := list.Store(doc.Datos[i].Departamentos[j].Tiendas[k])
 					pos := ((position - 1) * 5) + doc.Datos[i].Departamentos[j].Tiendas[k].Calificacion
 					list.Insertar(&MyStore, temp_vector[pos-1])
+					hashTiendas = append(hashTiendas, dijkstra.Block(MyStore.Nombre+"\\n"+MyStore.Descripcion+"\\n"+MyStore.Contacto))
 				}
 			}
 		}
 	}
+	dijkstra.PrintTree(dijkstra.BuildTree(hashTiendas)[0].(dijkstra.Node))
+	//fmt.Println(dijkstra.DotMerkleTree)
+	dot.CrearArchivoEvery(dijkstra.DotMerkleTree+"}", "txt", "DotAnios")
+	dot.GraphEvery("MerkleTiendas", "jpg", "DotAnios")
+	dijkstra.DotMerkleTree = "digraph { node [shape=box, style=\"filled\", fillcolor=\"#61e665\"];"
 	vector = temp_vector
 	list.GlobalVector = vector
 }

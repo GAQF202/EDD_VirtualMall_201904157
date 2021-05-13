@@ -49,9 +49,8 @@ func NewHashTable(size int) *HashTable {
 }
 
 func (ht *HashTable) funcionHash(id int) int {
-	//Funcion hash por metodo de division
-	//posicion := id % (ht.size - 1)
-	//pos := 0.005%1
+
+	//METODO DE MULTIPLICACION
 	mod := math.Mod(0.6556, 1)
 	posicion := (ht.size * id * int(mod))
 	if posicion > ht.size {
@@ -61,24 +60,22 @@ func (ht *HashTable) funcionHash(id int) int {
 }
 
 func (ht *HashTable) rehashing() {
-	siguente := ht.size //la variable siguiente no es nada mas que el siguiente valor que se acople al factor de carga libre
+	siguente := ht.size
 	factor := 0.0
 
-	//Siguiente tama;o adecuado para cumplir con el factor de utilizacion minimo
 	for factor < 0.3 {
 		factor = float64(ht.elementos) / float64(siguente)
 		siguente++
 	}
 
-	ht_temporal := NewHashTable(siguente) // creamos una tabla temporal para almacenar nuevamente los datos
+	ht_temporal := NewHashTable(siguente)
 
-	for _, nodo := range ht.vector { //recorremos el vector de nuestra tabla
-		for _, tupla := range nodo.lista { //recorremos el clave valor
-			ht_temporal.Insertar(int(tupla.clave), tupla.clave, tupla.valor) //los insertamos en la nueva tabla
+	for _, nodo := range ht.vector {
+		for _, tupla := range nodo.lista {
+			ht_temporal.Insertar(int(tupla.clave), tupla.clave, tupla.valor)
 		}
 	}
 
-	//igualamos los atributos de la tabla actual con la temporal
 	ht.vector = ht_temporal.vector
 	ht.elementos = ht_temporal.elementos
 	ht.size = ht_temporal.size
@@ -99,7 +96,7 @@ func (ht *HashTable) Insertar(id int, clave int, valor Comentario) {
 		ht.factorCarga = float64(ht.elementos) / float64(ht.size)
 	}
 	if ht.factorCarga > 0.6 {
-		//hacer rehashing
+		//REHASHING
 		ht.rehashing()
 	}
 }

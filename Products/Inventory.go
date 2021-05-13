@@ -9,6 +9,8 @@ import (
 	"strings"
 
 	"github.com/GAQF202/servidor-rest/Structs"
+	"github.com/GAQF202/servidor-rest/dijkstra"
+	"github.com/GAQF202/servidor-rest/dot"
 	"github.com/GAQF202/servidor-rest/list"
 )
 
@@ -91,16 +93,21 @@ func LoadInv(w http.ResponseWriter, r *http.Request) {
 
 //FUNCION PARA INSERTAR LOS INVENTARIOS DENTRO DE LAS TIENDAS
 func add_inventory(inventory InventoryType) {
-
+	var hashProductos []dijkstra.Hashable
 	for i := 0; i < len(inventory.Inventarios); i++ {
 		Position := list.Get_position(inventory.Inventarios[i].Departamento, inventory.Inventarios[i].Tienda, inventory.Inventarios[i].Calificacion)
 		for j := 0; j < len(inventory.Inventarios[i].Productos); j++ {
 			tmp := inventory.Inventarios[i].Productos[j]
 			product := Structs.Product{tmp.Nombre, tmp.Codigo, tmp.Descripcion, tmp.Precio, tmp.Cantidad, tmp.Imagen, tmp.Almacenamiento}
+			hashProductos = append(hashProductos, dijkstra.Block(product.Nombre+"\\n"+product.Almacenamiento+"\\n"+strconv.FormatFloat(product.Precio, 'E', -1, 32)+"\\n"+product.Descripcion))
 			list.Get_store_node(inventory.Inventarios[i].Tienda, inventory.Inventarios[i].Calificacion, list.GlobalVector[Position], product)
 		}
 		list.VerNodos(list.GlobalVector[Position])
 	}
+	dijkstra.PrintTree(dijkstra.BuildTree(hashProductos)[0].(dijkstra.Node))
+	dot.CrearArchivoEvery(dijkstra.DotMerkleTree+"}", "txt", "DotAnios")
+	dot.GraphEvery("MerkleProductos", "jpg", "DotAnios")
+	dijkstra.DotMerkleTree = "digraph { node [shape=box, style=\"filled\", fillcolor=\"#61e665\"];"
 }
 
 //FUNCION PARA INGRESAR LOS PEDIDOS EN EL STRUCT
